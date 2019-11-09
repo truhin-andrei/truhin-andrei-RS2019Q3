@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./css/main.min.css">
+  <title>Canvas</title>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="main-menu">
+        <span class="main-menu__line"></span>
+        <span class="main-menu__line"></span>
+        <span class="main-menu__line"></span>
+      </div>
+      <h1 class="main-head">CodeJam - Pallete</h1>
+      <div class="add-menu">
+        <span class="add-menu__dot"></span>
+        <span class="add-menu__dot"></span>
+        <span class="add-menu__dot"></span>
+      </div>
+    </header>
+    <main class="pallete">
+      <section class="panels">
+        <ul class="panel-tools">
+          <li class="panel-tools__item">Paint bucket</li>
+          <li class="panel-tools__item">Choose color</li>
+          <li class="panel-tools__item">Move</li>
+          <li class="panel-tools__item">Transform</li>
+        </ul>
+        <ul class="panel-color">
+          <li class="panel-color__item">Current color</li>
+          <li class="panel-color__item">Prev color</li>
+          <li class="panel-color__item">red</li>
+          <li class="panel-color__item">blue</li>
+        </ul>
+      </section>
+      <section class="canvas">
+        <canvas id="canvas" width="512" height="512"></canvas>
+      </section>
+      <section class="toggle">
+        <ul class="panel-toggle">
+          <li id="four" class="panel-toggle__item">4x4</li>
+          <li id="thirty_two" class="panel-toggle__item">32x32</li>
+          <li id="picture" class="panel-toggle__item">Image RSS</li>
+        </ul>
+      </section>
+    </main>
+  </div>
+  <script defer type="text/javascript" src="./js/canvas.js"></script>
+</body>
+</html>
