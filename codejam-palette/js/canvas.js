@@ -3,6 +3,17 @@ const context = canvas.getContext('2d');
 const four = document.getElementById('four');
 const thirtyTwo = document.getElementById('thirty_two');
 const picture = document.getElementById('picture');
+let colorSelector = document.getElementById('choseColor');
+let color ;
+
+colorSelector.addEventListener("input", () => {
+  console.log(color);
+  document.body.style.setProperty("--prevColor", color);
+  color = event.srcElement.value;
+  document.body.style.setProperty("--color", color);
+});
+
+
 
 four.addEventListener('click', () => fetch('./assets/json/4x4.json')
   .then((response) => response.json())
@@ -48,7 +59,7 @@ picture.addEventListener('click', () => fetch('./assets/img/image.png')
   }));
 
 function bucket() {
-  let color = '#c4c4c4';
+  
   context.fillStyle = color;
   context.fillRect(0, 0, 512, 512);
   console.log('1111');
