@@ -31,6 +31,24 @@ document.addEventListener('keypress',() => {
   } 
 });
 
+//сохранение canvas
+let data = localStorage.getItem('image');
+canvas.addEventListener('mouseleave', saveImage);
+
+function saveImage(){
+  data = canvas.toDataURL();
+  localStorage.setItem('image', data);
+  console.log(data);
+}
+
+function restoreImage(){
+  let img = new Image;
+  img.src = localStorage.getItem('image');
+  img.onload = function () {
+      context.drawImage(img, 0, 0);
+  };
+}
+
 // предустановка сохранёных значений после перезагрузки
 if(localStorage.getItem('tool')){
   activeTool = document.getElementById(localStorage.getItem('tool'));
@@ -44,6 +62,10 @@ if(localStorage.getItem('color')){
 document.body.style.setProperty("--prevColor", localStorage.getItem('prevColor'));
 document.body.style.setProperty("--color", localStorage.getItem('color'));
 }
+
+if(localStorage.getItem('image')){
+  restoreImage();
+  }
 
 if(localStorage.getItem('imgType')){
   activeTool = document.getElementById(localStorage.getItem('imgType'));
