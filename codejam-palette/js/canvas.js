@@ -4,16 +4,31 @@ const four = document.getElementById('four');
 const thirtyTwo = document.getElementById('thirty_two');
 const picture = document.getElementById('picture');
 const panelTools = document.getElementById('tools');
+const panelColor = document.getElementById('panelColor');
 let colorSelector = document.getElementById('choseColor');
 let color = localStorage.getItem('color');
 const sample = document.getElementById('sample');
 
 let activeTool;
 let toolsEvent = panelTools.addEventListener('click', tools);
+
 let eventClick = new MouseEvent('click', {
   'view': window,
   'bubbles': true,
   'cancelable': true
+});
+
+panelColor.addEventListener('click', colorSwitch);
+
+// keyboard control
+document.addEventListener('keypress',() => {
+  if (event.code === 'KeyB'){
+    madeToolActive('bucket');
+  } else if (event.code === 'KeyP'){
+    madeToolActive('pencil');
+  }else if (event.code === 'KeyC'){
+    madeToolActive('picker');
+  } 
 });
 
 // предустановка сохранёных значений после перезагрузки
@@ -21,9 +36,8 @@ if(localStorage.getItem('tool')){
   activeTool = document.getElementById(localStorage.getItem('tool'));
   activeTool.dispatchEvent(eventClick);
 } else {
-  activeTool = document.getElementById('bucket');
-  activeTool.dispatchEvent(eventClick);
-  localStorage.setItem('tool', 'bucket');
+  madeToolActive('pencil');
+  
 }
 
 if(localStorage.getItem('color')){
@@ -42,7 +56,30 @@ if(localStorage.getItem('imgType')){
   localStorage.setItem('imgType', 'four');
 }
 
+function madeToolActive(tool){
+  activeTool = document.getElementById(tool);
+  activeTool.dispatchEvent(eventClick);
+  localStorage.setItem('tool', tool);
+}
 
+function colorSwitch(event) {
+  if (event.target.id === 'red'){
+    swapColor(null, '#F74141');
+  } else if (event.target.id === 'blue'){
+    swapColor(null, '#41B6F7');
+  }else if (event.target.id === 'prevColor'){
+    swapColor(null, localStorage.getItem('prevColor'));
+  }
+}
+
+function swapColor(event, newColor=sample.style.background) {
+  
+  document.body.style.setProperty("--prevColor", localStorage.getItem('color'));
+  localStorage.setItem('prevColor', color);
+  color =newColor;
+  document.body.style.setProperty("--color", color);
+  localStorage.setItem('color', color);
+}
 
 function draw(event) {
   let x = event.layerX;
@@ -56,14 +93,10 @@ function draw(event) {
 }
 
 function pencilDown(event){
-  
-    canvas.addEventListener("mousemove", draw);
-  
+  canvas.addEventListener("mousemove", draw);
 }
 function pencilUp(event){
-
-    canvas.removeEventListener("mousemove", draw);
-  
+  canvas.removeEventListener("mousemove", draw);
 }
 
 
@@ -114,12 +147,12 @@ function picker(event){
       sample.style.background = sampleColor;
 }
 
-function swapColor() {
-  document.body.style.setProperty("--prevColor", localStorage.getItem('color'));
-  color = sample.style.background;
-  document.body.style.setProperty("--color", color);
-  localStorage.setItem('color', color);
-}
+// function swapColor() {
+//   document.body.style.setProperty("--prevColor", localStorage.getItem('color'));
+//   color = sample.style.background;
+//   document.body.style.setProperty("--color", color);
+//   localStorage.setItem('color', color);
+// }
 
 //panelTools.addEventListener('click', tools);
 
