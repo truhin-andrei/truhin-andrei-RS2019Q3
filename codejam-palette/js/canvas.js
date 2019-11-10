@@ -5,185 +5,166 @@ const thirtyTwo = document.getElementById('thirty_two');
 const picture = document.getElementById('picture');
 const panelTools = document.getElementById('tools');
 const panelColor = document.getElementById('panelColor');
-let colorSelector = document.getElementById('choseColor');
+const colorSelector = document.getElementById('choseColor');
 let color = localStorage.getItem('color');
 const sample = document.getElementById('sample');
 
 let activeTool;
-let toolsEvent = panelTools.addEventListener('click', tools);
 
-let eventClick = new MouseEvent('click', {
-  'view': window,
-  'bubbles': true,
-  'cancelable': true
+const eventClick = new MouseEvent('click', {
+  view: window,
+  bubbles: true,
+  cancelable: true,
 });
 
-panelColor.addEventListener('click', colorSwitch);
-
-// keyboard control
-document.addEventListener('keypress',() => {
-  if (event.code === 'KeyB'){
-    madeToolActive('bucket');
-  } else if (event.code === 'KeyP'){
-    madeToolActive('pencil');
-  }else if (event.code === 'KeyC'){
-    madeToolActive('picker');
-  } 
-});
-
-//сохранение canvas
+// сохранение canvas
 let data = localStorage.getItem('image');
-canvas.addEventListener('mouseleave', saveImage);
 
-function saveImage(){
+function saveImage() {
   data = canvas.toDataURL();
   localStorage.setItem('image', data);
-  console.log(data);
 }
 
-function restoreImage(){
-  let img = new Image;
+function restoreImage() {
+  const img = new Image();
   img.src = localStorage.getItem('image');
   img.onload = function () {
-      context.drawImage(img, 0, 0);
+    context.drawImage(img, 0, 0);
   };
 }
 
-// предустановка сохранёных значений после перезагрузки
-if(localStorage.getItem('tool')){
-  activeTool = document.getElementById(localStorage.getItem('tool'));
-  activeTool.dispatchEvent(eventClick);
-} else {
-  madeToolActive('pencil');
-  
-}
-
-if(localStorage.getItem('color')){
-document.body.style.setProperty("--prevColor", localStorage.getItem('prevColor'));
-document.body.style.setProperty("--color", localStorage.getItem('color'));
-}
-
-if(localStorage.getItem('image')){
-  restoreImage();
-  }
-
-if(localStorage.getItem('imgType')){
-  activeTool = document.getElementById(localStorage.getItem('imgType'));
-  activeTool.classList.add('panel-tools--active');
-  //activeTool.dispatchEvent(eventClick);
-} else {
-  activeTool = document.getElementById('four');
-  //activeTool.dispatchEvent(eventClick);
-  activeTool.classList.add('panel-tools--active');
-  localStorage.setItem('imgType', 'four');
-}
-
-function madeToolActive(tool){
+function madeToolActive(tool) {
   activeTool = document.getElementById(tool);
   activeTool.dispatchEvent(eventClick);
   localStorage.setItem('tool', tool);
 }
 
-function colorSwitch(event) {
-  if (event.target.id === 'red'){
-    swapColor(null, '#F74141');
-  } else if (event.target.id === 'blue'){
-    swapColor(null, '#41B6F7');
-  }else if (event.target.id === 'prevColor'){
-    swapColor(null, localStorage.getItem('prevColor'));
-  }
+// предустановка сохранёных значений после перезагрузки
+if (localStorage.getItem('tool')) {
+  activeTool = document.getElementById(localStorage.getItem('tool'));
+  activeTool.dispatchEvent(eventClick);
+} else {
+  madeToolActive('pencil');
 }
 
-function swapColor(event, newColor=sample.style.background) {
-  
-  document.body.style.setProperty("--prevColor", localStorage.getItem('color'));
+if (localStorage.getItem('color')) {
+  document.body.style.setProperty('--prevColor', localStorage.getItem('prevColor'));
+  document.body.style.setProperty('--color', localStorage.getItem('color'));
+}
+
+if (localStorage.getItem('image')) {
+  restoreImage();
+}
+
+if (localStorage.getItem('imgType')) {
+  activeTool = document.getElementById(localStorage.getItem('imgType'));
+  activeTool.classList.add('panel-tools--active');
+} else {
+  activeTool = document.getElementById('four');
+  activeTool.classList.add('panel-tools--active');
+  localStorage.setItem('imgType', 'four');
+}
+
+function swapColor(event, newColor = sample.style.background) {
+  document.body.style.setProperty('--prevColor', localStorage.getItem('color'));
   localStorage.setItem('prevColor', color);
-  color =newColor;
-  document.body.style.setProperty("--color", color);
+  color = newColor;
+  document.body.style.setProperty('--color', color);
   localStorage.setItem('color', color);
+}
+
+function colorSwitch(event) {
+  if (event.target.id === 'red') {
+    swapColor(null, '#F74141');
+  } else if (event.target.id === 'blue') {
+    swapColor(null, '#41B6F7');
+  } else if (event.target.id === 'prevColor') {
+    swapColor(null, localStorage.getItem('prevColor'));
+  }
 }
 
 function draw(event) {
   let x = event.layerX;
   let y = event.layerY;
-  let pixelX = localStorage.getItem('pixel.x');
-  let pixelY =  localStorage.getItem('pixel.y');
+  const pixelX = localStorage.getItem('pixel.x');
+  const pixelY = localStorage.getItem('pixel.y');
   x = Math.ceil(x / pixelX) * pixelX - pixelX;
   y = Math.ceil(y / pixelY) * pixelY - pixelY;
-  context.fillStyle = localStorage.getItem("color");
+  context.fillStyle = localStorage.getItem('color');
   context.fillRect(x, y, pixelX, pixelY);
 }
 
-function pencilDown(event){
-  canvas.addEventListener("mousemove", draw);
+function pencilDown() {
+  canvas.addEventListener('mousemove', draw);
 }
-function pencilUp(event){
-  canvas.removeEventListener("mousemove", draw);
+function pencilUp() {
+  canvas.removeEventListener('mousemove', draw);
 }
 
+// инструменты
 
- // инструменты
+function bucket() {
+  context.fillStyle = color;
+  context.fillRect(0, 0, 512, 512);
+}
 
- function tools(event){
-  if(localStorage.getItem('tool')){
+function picker(event) {
+  const sampleData = context.getImageData(event.layerX, event.layerY, 1, 1);
+  const sampleColorData = sampleData.data;
+  const sampleColor = `rgba(${sampleColorData[0]},${sampleColorData[1]},${
+    sampleColorData[2]},${sampleColorData[3]})`;
+  sample.style.background = sampleColor;
+}
+
+function tools(event) {
+  if (localStorage.getItem('tool')) {
     document.getElementById(localStorage.getItem('tool')).classList.remove('panel-tools--active');
 
-    if (localStorage.getItem('tool') === 'bucket'){
+    if (localStorage.getItem('tool') === 'bucket') {
       canvas.removeEventListener('click', bucket);
-    } else if (localStorage.getItem('tool') === 'picker'){
+    } else if (localStorage.getItem('tool') === 'picker') {
       canvas.removeEventListener('mousemove', picker);
       canvas.removeEventListener('click', swapColor);
-    }else if (localStorage.getItem('tool') === 'pencil'){
+    } else if (localStorage.getItem('tool') === 'pencil') {
       canvas.removeEventListener('mousedown', pencilDown);
       canvas.removeEventListener('mouseup', pencilUp);
-      canvas.removeEventListener("mousemove", draw);
+      canvas.removeEventListener('mousemove', draw);
     }
   }
   localStorage.setItem('tool', event.target.id);
   event.target.classList.add('panel-tools--active');
 
-  if (localStorage.getItem('tool') === 'bucket'){
+  if (localStorage.getItem('tool') === 'bucket') {
     canvas.addEventListener('click', bucket);
-  } else if (localStorage.getItem('tool') === 'picker'){
+  } else if (localStorage.getItem('tool') === 'picker') {
     canvas.addEventListener('mousemove', picker);
     canvas.addEventListener('click', swapColor);
-  } else if (localStorage.getItem('tool') === 'pencil'){
-    
-canvas.addEventListener("mousedown",  pencilDown);
-canvas.addEventListener("mouseup",  pencilUp);
+  } else if (localStorage.getItem('tool') === 'pencil') {
+    canvas.addEventListener('mousedown', pencilDown);
+    canvas.addEventListener('mouseup', pencilUp);
   }
 }
 
- function bucket() { 
-  context.fillStyle = color;
-  context.fillRect(0, 0, 512, 512);
-}
-
-
-
-function picker(event){
-      let sampleData = context.getImageData(event.layerX, event.layerY, 1, 1);
-      let sampleColorData = sampleData.data;
-      let sampleColor = 'rgba(' + sampleColorData[0] + ',' + sampleColorData[1] + ',' +
-      sampleColorData[2] + ',' + sampleColorData[3] + ')';
-      sample.style.background = sampleColor;
-}
-
-// function swapColor() {
-//   document.body.style.setProperty("--prevColor", localStorage.getItem('color'));
-//   color = sample.style.background;
-//   document.body.style.setProperty("--color", color);
-//   localStorage.setItem('color', color);
-// }
-
-//panelTools.addEventListener('click', tools);
+panelTools.addEventListener('click', tools);
+panelColor.addEventListener('click', colorSwitch);
+canvas.addEventListener('mouseleave', saveImage);
+// keyboard control
+document.addEventListener('keypress', (event) => {
+  if (event.code === 'KeyB') {
+    madeToolActive('bucket');
+  } else if (event.code === 'KeyP') {
+    madeToolActive('pencil');
+  } else if (event.code === 'KeyC') {
+    madeToolActive('picker');
+  }
+});
 
 // выбор цвета
-colorSelector.addEventListener("input", () => {
+colorSelector.addEventListener('input', (event) => {
   localStorage.setItem('prevColor', localStorage.getItem('color'));
-  document.body.style.setProperty("--prevColor", localStorage.getItem('color'));
+  document.body.style.setProperty('--prevColor', localStorage.getItem('color'));
   localStorage.setItem('color', event.srcElement.value);
-  document.body.style.setProperty("--color", event.srcElement.value);
+  document.body.style.setProperty('--color', event.srcElement.value);
   color = localStorage.getItem('color');
 });
 
@@ -246,5 +227,3 @@ picture.addEventListener('click', () => fetch('./assets/img/image.png')
     picture.classList.add('panel-tools--active');
     context.drawImage(image, 0, 0, canvas.width, canvas.height);
   }));
-
- 
