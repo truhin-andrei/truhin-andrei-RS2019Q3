@@ -6,16 +6,76 @@ const picture = document.getElementById('picture');
 const panelTools = document.getElementById('tools');
 let colorSelector = document.getElementById('choseColor');
 let color = localStorage.getItem('color');
+const sample = document.getElementById('sample');
 
+let activeTool;
+let toolsEvent = panelTools.addEventListener('click', tools);
+var eventClick = new MouseEvent('click', {
+  'view': window,
+  'bubbles': true,
+  'cancelable': true
+});
+
+// предустановка сохранёных значений после перезагрузки
 if(localStorage.getItem('tool')){
-  document.getElementById(localStorage.getItem('tool')).classList.add('panel-tools--active');
+  activeTool = document.getElementById(localStorage.getItem('tool'));
+  activeTool.classList.add('panel-tools--active');
+  activeTool.dispatchEvent(eventClick);
 } else {
-  document.getElementById('bucket').classList.add('panel-tools--active');
+  activeTool = document.getElementById('bucket');
+  activeTool.classList.add('panel-tools--active');
+  activeTool.dispatchEvent(eventClick);
+  localStorage.setItem('tool', 'bucket');
 }
+
+if(localStorage.getItem('color')){
 document.body.style.setProperty("--prevColor", localStorage.getItem('prevColor'));
 document.body.style.setProperty("--color", localStorage.getItem('color'));
+}
 
+ // инструменты
+ function bucket() { 
+  context.fillStyle = color;
+  context.fillRect(0, 0, 512, 512);
+}
 
+function tools(event){
+  if(localStorage.getItem('tool')){
+    document.getElementById(localStorage.getItem('tool')).classList.remove('panel-tools--active');
+    if (localStorage.getItem('tool') === 'bucket'){
+      canvas.removeEventListener('click', bucket);
+    } else if (localStorage.getItem('tool') === 'picker'){
+      canvas.removeEventListener('mousemove', picker);
+    }
+  }
+  localStorage.setItem('tool', event.target.id);
+  event.target.classList.add('panel-tools--active');
+  if (localStorage.getItem('tool') === 'bucket'){
+    canvas.addEventListener('click', bucket);
+  } else if (localStorage.getItem('tool') === 'picker'){
+    canvas.addEventListener('mousemove', picker);
+    canvas.addEventListener('click', swapColor);
+  }
+}
+
+function picker(event){
+      let sampleData = context.getImageData(event.layerX, event.layerY, 1, 1);
+      let sampleColorData = sampleData.data;
+      let sampleColor = 'rgba(' + sampleColorData[0] + ',' + sampleColorData[1] + ',' +
+      sampleColorData[2] + ',' + sampleColorData[3] + ')';
+      sample.style.background = sampleColor;
+}
+
+function swapColor() {
+  document.body.style.setProperty("--prevColor", localStorage.getItem('color'));
+  color = sample.style.background;
+  document.body.style.setProperty("--color", color);
+  localStorage.setItem('color', color);
+}
+
+//panelTools.addEventListener('click', tools);
+
+// выбор цвета
 colorSelector.addEventListener("input", () => {
   localStorage.setItem('prevColor', localStorage.getItem('color'));
   document.body.style.setProperty("--prevColor", localStorage.getItem('color'));
@@ -24,7 +84,7 @@ colorSelector.addEventListener("input", () => {
   color = localStorage.getItem('color');
 });
 
-
+// Отрисовка картинок
 
 four.addEventListener('click', () => fetch('./assets/json/4x4.json')
   .then((response) => response.json())
@@ -69,21 +129,4 @@ picture.addEventListener('click', () => fetch('./assets/img/image.png')
     context.drawImage(image, 0, 0, canvas.width, canvas.height);
   }));
 
-function bucket() {
-  
-  context.fillStyle = color;
-  context.fillRect(0, 0, 512, 512);
-  
-}
-
-function tools(event){
-  if(localStorage.getItem('tool')){
-    document.getElementById(localStorage.getItem('tool')).classList.remove('panel-tools--active');
-  }
-  localStorage.setItem('tool', event.target.id);
-  event.target.classList.add('panel-tools--active');
-  console.log()
-}
-
-canvas.addEventListener('click', bucket);
-panelTools.addEventListener('click', tools);
+ 
