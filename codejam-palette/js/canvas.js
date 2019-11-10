@@ -3,14 +3,25 @@ const context = canvas.getContext('2d');
 const four = document.getElementById('four');
 const thirtyTwo = document.getElementById('thirty_two');
 const picture = document.getElementById('picture');
+const panelTools = document.getElementById('tools');
 let colorSelector = document.getElementById('choseColor');
-let color ;
+let color = localStorage.getItem('color');
+
+if(localStorage.getItem('tool')){
+  document.getElementById(localStorage.getItem('tool')).classList.add('panel-tools--active');
+} else {
+  document.getElementById('bucket').classList.add('panel-tools--active');
+}
+document.body.style.setProperty("--prevColor", localStorage.getItem('prevColor'));
+document.body.style.setProperty("--color", localStorage.getItem('color'));
+
 
 colorSelector.addEventListener("input", () => {
-  console.log(color);
-  document.body.style.setProperty("--prevColor", color);
-  color = event.srcElement.value;
-  document.body.style.setProperty("--color", color);
+  localStorage.setItem('prevColor', localStorage.getItem('color'));
+  document.body.style.setProperty("--prevColor", localStorage.getItem('color'));
+  localStorage.setItem('color', event.srcElement.value);
+  document.body.style.setProperty("--color", event.srcElement.value);
+  color = localStorage.getItem('color');
 });
 
 
@@ -62,7 +73,17 @@ function bucket() {
   
   context.fillStyle = color;
   context.fillRect(0, 0, 512, 512);
-  console.log('1111');
+  
+}
+
+function tools(event){
+  if(localStorage.getItem('tool')){
+    document.getElementById(localStorage.getItem('tool')).classList.remove('panel-tools--active');
+  }
+  localStorage.setItem('tool', event.target.id);
+  event.target.classList.add('panel-tools--active');
+  console.log()
 }
 
 canvas.addEventListener('click', bucket);
+panelTools.addEventListener('click', tools);

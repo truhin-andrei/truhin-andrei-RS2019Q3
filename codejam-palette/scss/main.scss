@@ -154,7 +154,7 @@
       width: 20px;
       height: 20px;
 
-      background: url(../assets/img/3-move.svg) no-repeat;
+      background: url(../assets/img/3-pencil.svg) no-repeat;
       background-size: cover;
     }
 
@@ -176,6 +176,10 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     }
     
+  }
+
+  &--active{
+    background-color: #c5abab;
   }
 }
 
@@ -311,3 +315,5 @@ body{
 .canvas canvas {
   border: 1px solid #000000;
 }
+
+
