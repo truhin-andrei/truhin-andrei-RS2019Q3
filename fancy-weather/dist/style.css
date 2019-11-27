@@ -3,6 +3,60 @@
   padding: 0;
   box-sizing: border-box; }
 
-body {
-  background-color: blue; }
+.container {
+  max-width: 1440px;
+  min-height: 800px;
+  margin: 0 auto;
+  padding: 40px 90px; }
+
+.btn {
+  display: flex; }
+  .btn__reload {
+    width: 44px;
+    height: 44px;
+    margin-right: 10px;
+    border-radius: 5px;
+    outline: 0; }
+  .btn__lang {
+    width: 71px;
+    height: 44px;
+    margin-right: 10px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 17px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    background: rgba(174, 181, 185, 0.5);
+    border-radius: 5px;
+    outline: 0; }
+  .btn__deg-c {
+    width: 44px;
+    height: 44px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 17px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    background: rgba(76, 82, 85, 0.4);
+    border-radius: 5px 0 0 5px;
+    border: 0;
+    outline: 0; }
+  .btn__deg-f {
+    width: 44px;
+    height: 44px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 17px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    background: rgba(174, 181, 185, 0.5);
+    border-radius: 0 5px 5px 0;
+    border: 0;
+    outline: 0; }
 
