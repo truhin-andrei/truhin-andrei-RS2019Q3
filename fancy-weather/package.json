@@ -9,14 +9,28 @@
     "eslint-plugin-import": "^2.18.2"
   },
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "css-loader": "^3.2.0",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "node-sass": "^4.13.0",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
     "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10"
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0",
+    "webpack-node-externals": "^1.7.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack -p",
+    "build": "webpack --mode production",
+    "start-serv": "node_modules/.bin/webpack-dev-server --history-api-fallback --inline --progress",
+    "dev": "webpack --mode development --watch",
     "watch": "webpack --watch",
-    "lint": "eslint ./fancy-weather/app/assets/js/*.js"
+    "lint": "eslint ./src/js/*.js"
   },
   "repository": {
     "type": "git",
