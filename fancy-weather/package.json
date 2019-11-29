@@ -27,7 +27,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode production",
-    "start-serv": "node_modules/.bin/webpack-dev-server --history-api-fallback --inline --progress",
+    "serv": "node_modules/.bin/webpack-dev-server --history-api-fallback --inline --progress",
     "dev": "webpack --mode development --watch",
     "watch": "webpack --watch",
     "lint": "eslint ./src/js/*.js"
