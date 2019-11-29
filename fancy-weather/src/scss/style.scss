@@ -46,11 +46,16 @@
 }
 
 .container{
+    display: flex;
     max-width: 1440px;
     min-height: 800px;
     margin: 0 auto;
     padding: 40px 90px;
-    background-color: yellow;
+    background-color: gray;
+}
+
+.weather{
+    margin-right: 288px;
 }
 
 .btn {
@@ -111,10 +116,75 @@
     margin-bottom: 4px;
 }
 .date{
-    margin-bottom: 75px;
+    
     @include font-main();
     font-weight: 600;
-font-size: 24px;
-line-height: 29px;
+    font-size: 24px;
+    line-height: 29px;
+}
 
+.forecast{
+    display: flex;
+    align-content: flex-end;
+    padding-top: 50px;
+    margin-bottom: 70px;
+   
+    background: url(../assets/img/cloud.svg);
+    background-repeat: no-repeat;
+    background-size: 162px 102px;
+    background-position: 355px 0px;
+
+    &__deg{
+        display: flex;
+        align-content: flex-start;
+        margin-right: 70px;
+        
+        @include font-main();
+        line-height: normal;
+        font-size: 100px;
+        
+        
+
+      
+
+        span {  
+            font-size: 306px;
+            line-height: 260px;
+            
+        } 
+    }
+    &__desc{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        @include font-main();
+        font-size: 22px;
+        line-height: 37px;
+    }
+}
+
+.next-forecast{
+    display: flex;
+
+    @include font-main();
+    font-size: 22px;
+    line-height: 27px;
+
+    &__day{
+        display: flex;
+        flex-direction: column;
+        margin-right: 50px;
+    }
+
+    &__degr{
+        display: inline-block;
+        font-size: 80px;
+        line-height: 98px;
+        padding-right: 70px;
+
+        background-image: url(../assets/img/cloud.svg);
+        background-repeat: no-repeat;
+        background-position: 86px 0px;
+        background-size: 65px 44px;
+    }
 }
