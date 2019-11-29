@@ -55,7 +55,7 @@
 }
 
 .weather{
-    margin-right: 288px;
+    margin-right: 270px;
 }
 
 .btn {
@@ -143,16 +143,13 @@
         line-height: normal;
         font-size: 100px;
         
-        
-
-      
-
         span {  
             font-size: 306px;
             line-height: 260px;
             
         } 
     }
+
     &__desc{
         display: flex;
         flex-direction: column;
@@ -187,4 +184,68 @@
         background-position: 86px 0px;
         background-size: 65px 44px;
     }
+}
+
+.position{
+    max-width: 375px;
+    
+    text-align: end;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    text-transform: capitalize;
+    color: #FFFFFF;
+}
+
+.search{
+    margin-bottom: 160px;
+
+    &__input{
+        width: 274px;
+        height: 44px;
+        padding-left: 15px;
+
+
+        @include font-main();
+
+        outline: 0;
+        border: 0;
+        background: rgba(76, 82, 85, 0.4);
+        border: 1px solid rgba(228, 227, 227, 0.2);
+        border-radius:  5px 0 0 5px;
+
+       
+    }
+
+    ::-webkit-input-placeholder{
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 17px;
+        text-transform: capitalize;
+        color: #FFFFFF;
+    }
+
+    &__btn{
+        width: 101px;
+        height: 44px;
+
+        @include font-main();
+
+        outline: 0;
+        border: 0;
+        background: rgba(174, 181, 185, 0.5);
+        border-radius: 0 5px 5px 0;
+    }
+}
+
+.map{
+    width: 375px;
+    height: 398px;
+    margin-bottom: 10px;
+    background-color: red;
+    border-radius:  20px;
 }
