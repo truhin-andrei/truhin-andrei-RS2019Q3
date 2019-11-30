@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>fancy weather</title>
     <link rel="stylesheet" href="style.css">
-    <script src="bundle.js"></script>
+    <script defer src="bundle.js"></script>
 </head>
 <body>
     <div class="container">
@@ -52,8 +52,8 @@
                     <input type="text" class="search__input" placeholder="Search city"><button class="search__btn">Search</button>
                 </form>
                 <div class="map"></div>
-                <div class="latitude"><span class="latitude__name">Latitude: </span><span class="latitude__value">53&deg;54&prime;</span></div>
-                <div class="longitude"><span class="longitude__name">Longitude: </span><span class="longitude__value">53&deg;54&prime;</span></div>
+                <div class="latitude"><span class="latitude__name">Latitude: </span><span id="latitude" class="latitude__value">53&deg;54&prime;</span></div>
+                <div class="longitude"><span class="longitude__name">Longitude: </span><span id="longitude" class="longitude__value">53&deg;54&prime;</span></div>
                 
         </div>
     </div>

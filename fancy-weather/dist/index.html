@@ -33,7 +33,7 @@
             <div class="date"><span id="day">Mon</span> <span id="date">28</span> <span id="month">October</span> 
                 <span id="time">17:23</span></div>
             <div class="forecast">
-                <div class="forecast__deg"><span id="degToday">10</span><span></span>&deg;</div>
+                <div class="forecast__deg"><span id="degToday">10</span>&deg;</div>
                 <div class="forecast__desc">
                     <div id="cast" class="forecast__cloud">overcast</div>
                     <div class="feels">Feels like: <span>7</span>&deg;</div>
@@ -42,12 +42,20 @@
                 </div>
             </div>
             <div class="next-forecast">
-                <div class="next-forecast__day"><span id="nextDay">Tuesday</span> <span id="nextForecast">7</span>&deg;</div>
-                <div class="next-forecast__day"><span id="nextDay">Wednesday</span> <span id="nextForecast">8</span>&deg;</div>
-                <div class="next-forecast__day"><span id="nextDay">Thursday</span> <span id="nextForecast">9</span>&deg;</div>
+                <div class="next-forecast__day"><span id="nextDay">Tuesday</span> <span id="nextForecast1" class="next-forecast__degr">7&deg;</span></div>
+                <div class="next-forecast__day"><span id="nextDay">Wednesday</span> <span id="nextForecast2" class="next-forecast__degr">8&deg;</span></div>
+                <div class="next-forecast__day"><span id="nextDay">Thursday</span> <span id="nextForecast3" class="next-forecast__degr">9&deg;</span></div>
             </div>
         </div>
-        <div class="position"></div>
+        <div class="position">
+                <form action="#" class="search">
+                    <input type="text" class="search__input" placeholder="Search city"><button class="search__btn">Search</button>
+                </form>
+                <div class="map"></div>
+                <div class="latitude"><span class="latitude__name">Latitude: </span><span class="latitude__value">53&deg;54&prime;</span></div>
+                <div class="longitude"><span class="longitude__name">Longitude: </span><span class="longitude__value">53&deg;54&prime;</span></div>
+                
+        </div>
     </div>
 </body>
 </html>
