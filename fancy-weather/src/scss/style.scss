@@ -172,8 +172,19 @@
    
 }
 
+.forecastImg{
+    width: 110px;
+    height: auto;
+    position: absolute;
+    z-index: 2;
+    object-fit: fill;
+    left: 93px;
+    top: -8px;
+}
+
 .next-forecast{
     display: flex;
+   
 
     @include font-main();
     font-size: 22px;
@@ -182,6 +193,7 @@
     &__day{
         display: flex;
         flex-direction: column;
+        position: relative;
         margin-right: 50px;
     }
 
@@ -191,10 +203,10 @@
         line-height: 98px;
         padding-right: 70px;
 
-        background-image: url(../assets/img/cloud.svg);
-        background-repeat: no-repeat;
-        background-position: 86px 0px;
-        background-size: 65px 44px;
+        // background-image: url(../assets/img/cloud.svg);
+        // background-repeat: no-repeat;
+        // background-position: 86px 0px;
+        // background-size: 65px 44px;
     }
 }
 

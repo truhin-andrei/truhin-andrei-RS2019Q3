@@ -15,7 +15,7 @@ export class Weather{
       let humid = response.main.humidity;
       
       this.render(temp, cond, pres, windValue, humid);
-      this.getIcon(response.weather[0].icon, 888);
+      this.getIcon(response.weather[0].icon);
       
     }catch(err){
       console.log('error of getWeather');
@@ -36,13 +36,16 @@ export class Weather{
     }
   }
 
-  async getIcon(iconId){
+  async getIcon(iconId, forecastNum = false){
     try  {
-      
       let request = await fetch(`http://openweathermap.org/img/wn/${iconId}@2x.png`);
       let responseIcon = await request.blob();
+      if(forecastNum){
+        this.renderForecastIcon(responseIcon, forecastNum-1)
+      }else{
+        this.renderIcon(responseIcon); 
+      }
       
-      this.renderIcon(responseIcon);  
     }catch(err){
       console.log('error of geticon');
       console.warn(`ERROR(${err.code}): ${err.message}`);
@@ -58,12 +61,22 @@ export class Weather{
     img.src = URL.createObjectURL(responseIcon); 
   }
 
+  renderForecastIcon(responseIcon, forecastNum){
+    const forecast = document.querySelectorAll('.next-forecast__day');
+    console.log(forecast[forecastNum]);
+     
+    let img = document.createElement('img');
+    img.classList.add('forecastImg') ;
+    forecast[forecastNum].append(img);
+    img.src = URL.createObjectURL(responseIcon); 
+  }
+
   renderForecast(tempArr){
     const forecastEl = document.getElementsByClassName('next-forecast__degr');
-    console.log(forecastEl[0]);
+    
     for(let i=0; i < 3; i++){
       forecastEl[i].innerHTML=this.convertKtoC(tempArr[(i+1)*8].main.temp);
-     console.log(tempArr[(i+1)*8]);
+      this.getIcon(tempArr[(i+1)*8].weather[0].icon, i+1);
     }
   }
 
