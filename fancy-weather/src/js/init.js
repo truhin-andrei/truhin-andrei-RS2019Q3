@@ -8,14 +8,17 @@ let map = new Map();
 let dateNow = new DateNow();
 let weather = new Weather();
 async function init(){
-  await location.getPosition();
+  location.getPosition();
+  await location.getCity();
   map.init(location);
-  map.render();
+  await map.render();
   
   dateNow.render();
   
   weather.init(location);
-  weather.getWeather();
+  await weather.getWeather();
+  await weather.getForecast();
+ 
 }
 //location.getPosition();
 init();

@@ -1,7 +1,8 @@
 export class Location{
-  constructor(latitude, longitude){
+  constructor(latitude, longitude, city){
     this.latitude = latitude;
     this.longitude = longitude;
+    this.city = city;
     
   }
 
@@ -71,8 +72,12 @@ export class Location{
    });
   }
 
-  getCoordByIp(){
-  
+  async getCity(){
+   let request = await fetch('https://ipinfo.io?token=a4998744625b7b');
+   console.log(request, 23);
+   let response = await request.json();
+   console.log(response.city, 24);
+   this.city = response.city;
   }
 
     
