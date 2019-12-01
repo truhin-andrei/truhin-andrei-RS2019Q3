@@ -128,11 +128,12 @@
     align-content: flex-end;
     padding-top: 50px;
     margin-bottom: 70px;
+    position: relative;
    
-    background: url(../assets/img/cloud.svg);
-    background-repeat: no-repeat;
-    background-size: 162px 102px;
-    background-position: 355px 0px;
+    // background: url(../assets/img/cloud.svg);
+    // background-repeat: no-repeat;
+    // background-size: 162px 102px;
+    // background-position: 355px 0px;
 
     &__deg{
         display: flex;
@@ -158,6 +159,17 @@
         font-size: 22px;
         line-height: 37px;
     }
+}
+
+.mainDegImg{
+    width: 162px;
+    height: auto;
+    position: absolute;
+    z-index: 2;
+    object-fit: fill;
+    left: 390px;
+    top: -40px;
+   
 }
 
 .next-forecast{

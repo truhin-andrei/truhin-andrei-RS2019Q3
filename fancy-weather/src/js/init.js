@@ -18,6 +18,7 @@ async function init(){
   weather.init(location);
   await weather.getWeather();
   await weather.getForecast();
+  
  
 }
 //location.getPosition();
