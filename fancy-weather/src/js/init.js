@@ -4,6 +4,8 @@ import {DateNow} from './dateNow.js';
 import {Weather} from './weather.js';
 import {Wallpaper} from './wallpaper.js';
 
+import {MINUTE_IN_MILISEC} from './const.js';
+
 
 let location = new Location();
 let map = new Map();
@@ -20,8 +22,12 @@ async function init(){
   dateNow.render();
   
   weather.init(location);
-  await wallpaper.getWallpaper();
+  
+  
   await weather.getWeather();
+  wallpaper.init(weather);
+  await wallpaper.getWallpaper();
+  await weather.render();
   await weather.getForecast();
 
   
@@ -30,9 +36,10 @@ async function init(){
 }
 //location.getPosition();
 init();
-setTimeout(() => {
+setInterval(() => {
+  dateNow.render();
  
-}, 1);
+}, MINUTE_IN_MILISEC);
 
 
 
