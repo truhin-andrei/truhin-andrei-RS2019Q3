@@ -1,5 +1,7 @@
 export class Weather{
 
+  
+
   init(location){
     this.location = location;
   }
@@ -8,9 +10,10 @@ export class Weather{
     try  {
       let request = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${this.location.city}&lang=${'en'}&APPID=529de013e9d3c2c6528f81831ab3aa2f`);
       let response = await request.json();
+      console.log(response);
       let temp = this.convertKtoC(response.main.temp);
       let cond = response.weather[0].description;
-      let pres = this.converthPaToMM(response.main.pressure);
+      
       let windValue = response.wind.speed;
       let humid = response.main.humidity;
       
@@ -63,7 +66,7 @@ export class Weather{
 
   renderForecastIcon(responseIcon, forecastNum){
     const forecast = document.querySelectorAll('.next-forecast__day');
-    console.log(forecast[forecastNum]);
+    //console.log(forecast[forecastNum]);
      
     let img = document.createElement('img');
     img.classList.add('forecastImg') ;

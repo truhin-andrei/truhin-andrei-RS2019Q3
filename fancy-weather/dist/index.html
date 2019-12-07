@@ -6,7 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>fancy weather</title>
     <link rel="stylesheet" href="style.css">
-    <script src="bundle.js"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=b58ea381-e37e-43d1-95fc-ec3da56fccd0&lang=en_RU" type="text/javascript">
+    </script>
+    <script defer src="bundle.js"></script>
 </head>
 <body>
     <div class="container">
@@ -30,13 +32,13 @@
             </div>    
             </div>
             <div class="location"><span id="city">Minsk</span>, <span id="country">Belarus</span> </div>
-            <div class="date"><span id="day">Mon</span> <span id="date">28</span> <span id="month">October</span> 
+            <div id="date" class="date"><span id="day">Mon</span> <span id="date">28</span> <span id="month">October</span> 
                 <span id="time">17:23</span></div>
             <div class="forecast">
                 <div class="forecast__deg"><span id="degToday">10</span>&deg;</div>
                 <div class="forecast__desc">
                     <div id="cast" class="forecast__cloud">overcast</div>
-                    <div class="feels">Feels like: <span>7</span>&deg;</div>
+                    <div class="pressure">Pressure: <span id="pressure">760</span>mm rt</div>
                     <div class="wind">Wind: <span id="wind">2</span>m/s </div>
                     <div class="humidity">Humidity: <span id="humidity">83</span>%</div>
                 </div>
@@ -51,9 +53,9 @@
                 <form action="#" class="search">
                     <input type="text" class="search__input" placeholder="Search city"><button class="search__btn">Search</button>
                 </form>
-                <div class="map"></div>
-                <div class="latitude"><span class="latitude__name">Latitude: </span><span class="latitude__value">53&deg;54&prime;</span></div>
-                <div class="longitude"><span class="longitude__name">Longitude: </span><span class="longitude__value">53&deg;54&prime;</span></div>
+                <div id="map" class="map"></div>
+                <div class="latitude"><span class="latitude__name">Latitude: </span><span id="latitude" class="latitude__value">53&deg;54&prime;</span></div>
+                <div class="longitude"><span class="longitude__name">Longitude: </span><span id="longitude" class="longitude__value">53&deg;54&prime;</span></div>
                 
         </div>
     </div>

@@ -74,9 +74,9 @@ export class Location{
 
   async getCity(){
    let request = await fetch('https://ipinfo.io?token=a4998744625b7b');
-   console.log(request, 23);
+   //console.log(request, 23);
    let response = await request.json();
-   console.log(response.city, 24);
+   console.log(response, 24);
    this.city = response.city;
   }
 
