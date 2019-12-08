@@ -36,6 +36,7 @@
     line-height: 17px;
     text-transform: uppercase;
     color: #FFFFFF;
+    
 }
 
 *{
@@ -116,6 +117,7 @@
     font-size: 44px;
     line-height: 54px;  
     margin-bottom: 4px;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 }
 .date{
     
@@ -123,6 +125,7 @@
     font-weight: 600;
     font-size: 24px;
     line-height: 29px;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 }
 
 .forecast{
@@ -131,11 +134,6 @@
     padding-top: 50px;
     margin-bottom: 70px;
     position: relative;
-   
-    // background: url(../assets/img/cloud.svg);
-    // background-repeat: no-repeat;
-    // background-size: 162px 102px;
-    // background-position: 355px 0px;
 
     &__deg{
         display: flex;
@@ -145,10 +143,12 @@
         @include font-main();
         line-height: normal;
         font-size: 100px;
+        text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
         
         span {  
             font-size: 306px;
             line-height: 260px;
+            text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
             
         } 
     }
@@ -160,6 +160,7 @@
         @include font-main();
         font-size: 22px;
         line-height: 37px;
+        text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
     }
 }
 
@@ -191,6 +192,7 @@
     @include font-main();
     font-size: 22px;
     line-height: 27px;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 
     &__day{
         display: flex;
@@ -204,11 +206,7 @@
         font-size: 80px;
         line-height: 98px;
         padding-right: 70px;
-
-        // background-image: url(../assets/img/cloud.svg);
-        // background-repeat: no-repeat;
-        // background-position: 86px 0px;
-        // background-size: 65px 44px;
+        text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
     }
 }
 
@@ -223,6 +221,7 @@
     line-height: 30px;
     text-transform: capitalize;
     color: #FFFFFF;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 }
 
 .search{

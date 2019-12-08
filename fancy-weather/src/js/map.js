@@ -17,7 +17,7 @@ export class Map{
             zoom: 10
             
         });
-        console.dir(this.location,2);
+        //console.dir(this.location,2);
   }
   try{
     ymaps.ready(init);

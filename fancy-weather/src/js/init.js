@@ -4,14 +4,17 @@ import {DateNow} from './dateNow.js';
 import {Weather} from './weather.js';
 import {Wallpaper} from './wallpaper.js';
 
+import {Search} from './search.js';
+
 import {MINUTE_IN_MILISEC} from './const.js';
 
-
+const searchBtn = document.getElementById('searchBtn');
 let location = new Location();
 let map = new Map();
 let dateNow = new DateNow();
 let weather = new Weather();
 let wallpaper = new Wallpaper();
+let search = new Search();
 
 async function init(){
   location.getPosition();
@@ -29,8 +32,8 @@ async function init(){
   await wallpaper.getWallpaper();
   await weather.render();
   await weather.getForecast();
-
-  
+  //location.getCoordByCity('minsk');
+  search.init(location);
   
  
 }
@@ -41,7 +44,9 @@ setInterval(() => {
  
 }, MINUTE_IN_MILISEC);
 
-
+searchBtn.addEventListener('click', () => {
+  search.searchApply();
+});
 
 
 

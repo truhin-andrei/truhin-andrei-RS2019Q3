@@ -9,9 +9,7 @@ export class Weather{
     this.sunrise;
     this.sunset;
     this.main;
-    //this.icon;
-  }
-  
+  } 
 
   init(location){
     this.location = location;
