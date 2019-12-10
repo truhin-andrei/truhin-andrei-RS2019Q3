@@ -15,9 +15,10 @@ export class Weather{
     this.location = location;
   }
 
-  async getWeather(){
+  async getWeather(city = this.location.city){
     try  {
-      let request = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${this.location.city}&lang=${'en'}&APPID=529de013e9d3c2c6528f81831ab3aa2f`);
+      console.log(city);
+      let request = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&lang=${'en'}&APPID=529de013e9d3c2c6528f81831ab3aa2f`);
       let response = await request.json();
       console.log(response);
       this.temp = convertKtoC(response.main.temp);
@@ -102,6 +103,7 @@ export class Weather{
     cast.innerText = this.condition;
     wind.innerText = this.windValue;
     humidity.innerText = this.humidity;
+    
   }
 
  

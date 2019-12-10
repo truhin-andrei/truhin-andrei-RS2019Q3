@@ -33,7 +33,7 @@ async function init(){
   await weather.render();
   await weather.getForecast();
   //location.getCoordByCity('minsk');
-  search.init(location);
+  search.init(location, weather, wallpaper, map);
   
  
 }
@@ -44,7 +44,8 @@ setInterval(() => {
  
 }, MINUTE_IN_MILISEC);
 
-searchBtn.addEventListener('click', () => {
+searchBtn.addEventListener('click' || 'keydown', (event) => {
+
   search.searchApply();
 });
 

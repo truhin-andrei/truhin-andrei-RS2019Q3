@@ -35,15 +35,15 @@ export class Location{
     
   }
 
-  getDeg(coord){
+  getDeg(coord) {
     return Math.trunc(coord);
   }
 
-  getMinutes(coord){
+  getMinutes(coord) {
     return Math.trunc((coord - this.getDeg(coord)) * 60);
   }
 
-  renderCoord(){
+  renderCoord() {
     const latitude = document.getElementById('latitude');
     const longitude = document.getElementById('longitude');
     latitude.innerHTML = `${this.getDeg(this.latitude)}&deg; ${this.getMinutes(this.latitude)}&prime;`
@@ -71,11 +71,11 @@ export class Location{
    });
   }
 
-  getDataBySearch(city){
+  async getDataBySearch(city){
     fetch(`https://geocode-maps.yandex.ru/1.x/?apikey=b58ea381-e37e-43d1-95fc-ec3da56fccd0&format=json&geocode=${city}&kind=locality&lang=${'en_RU'}&results=1`)
    .then(response => response.json())
    .then(res => {
-     console.log(res, 965);
+    
     this.city = res.response.GeoObjectCollection.featureMember[0].GeoObject.name;
     this.country = res.response.GeoObjectCollection.featureMember[0].GeoObject.description;
     let coord = res.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(' ');
@@ -89,10 +89,23 @@ export class Location{
   }
 
   async getCity(){
-   let request = await fetch('https://ipinfo.io?token=a4998744625b7b');
+    let data = {};
+   let request = await fetch('https://ipinfo.io?token=a4998744625b7b', {
+    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+    headers: {
+      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    redirect: 'follow', // manual, *follow, error
+    referrer: 'no-referrer', // no-referrer, *client
+    body: JSON.stringify(data) // body data type must match "Content-Type" header
+  });
    //console.log(request, 23);
    let response = await request.json();
-   console.log(response, 24);
+  // console.log(response, 24);
    this.city = response.city;
   }
 
