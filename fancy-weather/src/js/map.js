@@ -1,9 +1,9 @@
 export class Map{
-  // constructor(latitude, longitude){
-  //   this.latitude = latitude;
-  //   this.longitude = longitude;
+  constructor(){
+    this.myMap;
+   
     
-  // }
+  }
   init(location) {
     this.location = location;
 }
@@ -12,7 +12,7 @@ export class Map{
     let  init =  () => {
       let that = this;
       //console.dir(this.location.latitude,1);
-        let myMap = new ymaps.Map("map", {
+        this.myMap = new ymaps.Map("map", {
             center: [that.location.latitude, that.location.longitude],
             zoom: 10
             
@@ -27,6 +27,10 @@ export class Map{
     console.warn(`ERROR(${err.code}): ${err.message}`);
   }
   
+}
+
+reRender() {
+  this.myMap.setCenter([this.location.longitude, this.location.latitude], 6);
 }
 
 

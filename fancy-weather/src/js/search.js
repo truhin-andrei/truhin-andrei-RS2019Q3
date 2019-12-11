@@ -16,7 +16,7 @@ export class Search{
     await this.wallpaper.getWallpaper();
     await this.weather.render();
     await this.weather.getForecast();
-    await this.map.render();
+    this.map.reRender();
   }
 }
 

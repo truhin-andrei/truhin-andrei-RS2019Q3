@@ -1,7 +1,8 @@
 export class DateNow{
   getDate(){
     let now = new Date();
-    let now1 = new Date(now.getDay(), now.getDate(), now.getMonth());
+   let now1 = new Date(10800);
+   console.log(now1);
     let formatter = new Intl.DateTimeFormat("en", {
       weekday: "short",
       year: "numeric",
