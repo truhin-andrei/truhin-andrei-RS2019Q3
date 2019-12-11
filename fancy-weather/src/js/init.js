@@ -9,6 +9,7 @@ import {Search} from './search.js';
 import {MINUTE_IN_MILISEC} from './const.js';
 
 const searchBtn = document.getElementById('searchBtn');
+const wallpaperReloadBtn = document.getElementById('reloadBtn');
 let location = new Location();
 let map = new Map();
 let dateNow = new DateNow();
@@ -30,26 +31,33 @@ async function init(){
   await weather.getWeather();
   wallpaper.init(weather);
   await wallpaper.getWallpaper();
+  wallpaper.render();
   await weather.render();
+   
+  await dateNow.render(weather.timeZone);
   await weather.getForecast();
   //location.getCoordByCity('minsk');
-  search.init(location, weather, wallpaper, map);
+  search.init(location, weather, wallpaper, map, dateNow);
   
  
 }
 //location.getPosition();
 init();
+
 setInterval(() => {
-  dateNow.render();
+  dateNow.render(weather.timeZone);
  
 }, MINUTE_IN_MILISEC);
 
-searchBtn.addEventListener('click' || 'keydown', (event) => {
 
+searchBtn.addEventListener('click' || 'keydown', (event) => {
   search.searchApply();
 });
 
+wallpaperReloadBtn.addEventListener('click' || 'keydown', (event) => {
+  wallpaper.render();
 
+});
 
 
 //console.log(location);
