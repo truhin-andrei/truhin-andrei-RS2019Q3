@@ -22,7 +22,13 @@ export class Weather{
       let request = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&lang=${'en'}&APPID=529de013e9d3c2c6528f81831ab3aa2f`);
       let response = await request.json();
       console.log(response);
-      this.temp = convertKtoC(response.main.temp);
+      if (!localStorage.getItem('unit')) {
+        localStorage.setItem('unit', 'C');
+      }
+      this.temp = ( localStorage.getItem('unit') === 'C') ?
+       Math.round(convertKtoC(response.main.temp)): Math.round(convertKtoF(response.main.temp));
+       
+      
       this.condition = response.weather[0].description;
       this.main = response.weather[0].main;
       this.windValue = response.wind.speed;
@@ -30,7 +36,7 @@ export class Weather{
       this.sunrise = response.sys.sunrise;
       this.sunset = response.sys.sunset;
       this.timeZone = response.timezone;
-      console.log(this.timeZone);
+      //console.log(this.timeZone);
       this.getIcon(response.weather[0].icon);
       
     }catch(err){
@@ -89,7 +95,8 @@ export class Weather{
     const forecastEl = document.getElementsByClassName('next-forecast__degr');
     
     for(let i=0; i < 3; i++){
-      forecastEl[i].innerHTML=convertKtoC(tempArr[(i+1)*8].main.temp);
+      forecastEl[i].innerHTML = ( localStorage.getItem('unit') === 'C') ?
+      Math.round(convertKtoC(tempArr[(i+1)*8].main.temp)): Math.round(convertKtoF(tempArr[(i+1)*8].main.temp));
       this.getIcon(tempArr[(i+1)*8].weather[0].icon, i+1);
     }
   }

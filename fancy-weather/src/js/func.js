@@ -3,11 +3,11 @@ export function convertKtoC(k){
 }
 
 export function convertKtoF(k){
-  return (9/5)*(convertKtoC(k)+32);
+  return convertCtoF(convertKtoC(k));
 }
 
 export function convertCtoF(c){
-  return (9/5)*(c+32);
+  return (9/5*c)+32;
 }
 
 export function convertFtoC(f){
