@@ -9,18 +9,22 @@ export class Search{
 
   async searchApply() {
     const searchInput = document.getElementById('searchInput');
-    let searchCity = searchInput.value;
+    let searchCity = '';
+    if (!searchInput.value.match(/[\d \(\)\.\^\+]/g)){
+      searchCity = searchInput.value;
+    }
+    if (searchCity === ''){
+      return;
+    }
     searchInput.value = '';
     
     this.location.getDataBySearch(searchCity);
     await this.weather.getWeather(searchCity);
-    //wallpaper.init(weather);
     await this.wallpaper.getWallpaper();
     this.wallpaper.render();
     await this.weather.render();
     await this.weather.getForecast();
     this.map.reRender();
-    console.log(this.weather.timeZone, 777);
     this.dateNow.render(this.weather.timeZone);
   }
 }

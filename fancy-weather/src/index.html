@@ -38,20 +38,20 @@
                 <div class="forecast__deg"><span id="degToday">10</span>&deg;</div>
                 <div class="forecast__desc">
                     <div id="cast" class="forecast__cloud">overcast</div>
-                    <div class="pressure">Pressure: <span id="pressure">760</span>mm rt</div>
+                    <div class="pressure">Apparent temperature: <span id="pressure">760</span>mm rt</div>
                     <div class="wind">Wind: <span id="wind">2</span>m/s </div>
                     <div class="humidity">Humidity: <span id="humidity">83</span>%</div>
                 </div>
             </div>
             <div class="next-forecast">
-                <div class="next-forecast__day"><span id="nextDay">Tuesday</span> <span id="nextForecast1" class="next-forecast__degr">7&deg;</span></div>
-                <div class="next-forecast__day"><span id="nextDay">Wednesday</span> <span id="nextForecast2" class="next-forecast__degr">8&deg;</span></div>
-                <div class="next-forecast__day"><span id="nextDay">Thursday</span> <span id="nextForecast3" class="next-forecast__degr">9&deg;</span></div>
+                <div class="next-forecast__day"><span class="nextDay"></span> <span id="nextForecast1" class="next-forecast__degr">7&deg;</span></div>
+                <div class="next-forecast__day"><span class="nextDay"></span> <span id="nextForecast2" class="next-forecast__degr">8&deg;</span></div>
+                <div class="next-forecast__day"><span class="nextDay"></span> <span id="nextForecast3" class="next-forecast__degr">9&deg;</span></div>
             </div>
         </div>
         <div class="position">
                 <form action="#" class="search">
-                    <input id="searchInput" type="text" class="search__input" placeholder="Search city">
+                    <input id="searchInput" type="text" class="search__input" pattern="[A-Za-zА-Яа-яЁё]" placeholder="Search city"><button id="audioSearchBtn" class="search__btn">Listen</button></input>
                     <button id="searchBtn" class="search__btn">Search</button>
                 </form>
                 <div id="map" class="map"></div>

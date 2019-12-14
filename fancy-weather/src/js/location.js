@@ -3,36 +3,23 @@ export class Location{
     this.latitude = latitude;
     this.longitude = longitude;
     this.city = city;
-    
   }
 
   getPosition(){
     let success = (pos) => {
       let crd = pos.coords;
-      //console.log(this.latitude, 1);
       this.latitude = crd.latitude;
       this.longitude = crd.longitude;
-      //console.log(this.latitude, 2);
       this.renderCoord();
       this.getNameArea();
-      //console.log(this);
     }
-    //console.dir(this);
 
     function error(err) {
       console.log('error of location');
       console.warn(`ERROR(${err.code}): ${err.message}`);
     }
 
-    // const options = {
-    //   enableHighAccuracy: true,
-    //   timeout: 5,
-    //   maximumAge: 0
-    // };
-
-    navigator.geolocation.getCurrentPosition(success, error);
-    
-    
+    navigator.geolocation.getCurrentPosition(success, error);  
   }
 
   getDeg(coord) {
@@ -75,7 +62,6 @@ export class Location{
     fetch(`https://geocode-maps.yandex.ru/1.x/?apikey=b58ea381-e37e-43d1-95fc-ec3da56fccd0&format=json&geocode=${city}&kind=locality&lang=${'en_RU'}&results=1`)
    .then(response => response.json())
    .then(res => {
-    
     this.city = res.response.GeoObjectCollection.featureMember[0].GeoObject.name;
     this.country = res.response.GeoObjectCollection.featureMember[0].GeoObject.description;
     let coord = res.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(' ');
@@ -85,6 +71,9 @@ export class Location{
     this.renderCity();
     this.renderCountry();
     this.renderCoord();
+   }).catch(err => {
+    console.log('error getDataBySearch')
+    console.warn(`ERROR(${err.code}): ${err.message}`);
    });
   }
 
@@ -105,8 +94,13 @@ export class Location{
   });
    //console.log(request, 23);
    let response = await request.json();
-  // console.log(response, 24);
+   let coordArray = response.loc.split(',');
+   
+   this.latitude = coordArray[0];
+    this.longitude = coordArray[1];
    this.city = response.city;
+   this.renderCoord();
+   this.getNameArea();
   }
 
     

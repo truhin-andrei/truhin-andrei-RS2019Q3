@@ -14,7 +14,7 @@
     <div class="container">
         <div class="weather">
             <div class="btn">
-                <button  class="btn__reload">
+                <button id="reloadBtn" class="btn__reload">
                     <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M39 0H5C2.23858 0 0 2.23858 0 5V39C0 41.7614 2.23858 44 5 44H39C41.7614 44 44 41.7614 44 39V5C44 2.23858 41.7614 0 39 0Z" fill="#B4B8BB" fill-opacity="0.4"/>
                         <path d="M27.2218 44L7.2218 24L0 31.2218V39C0 41.7614 2.23858 44 5 44H27.2218Z" fill="#AEB5B9" fill-opacity="0.5"/>
@@ -27,8 +27,8 @@
                     <option value=”Ru”>Ru</option>                   
                     <option value=”Bl”>Bl</option>                   
                 </select>
-            <div class="btn__deg-wrap">
-                <button class="btn__deg-c">C</button><button class="btn__deg-f">F</button>
+            <div  id="btnDeg" class="btn__deg-wrap">
+                <button id="btnC" class="btn__deg-c">C</button><button id="btnF" class="btn__deg-f">F</button>
             </div>    
             </div>
             <div class="location"><span id="city">Minsk</span>, <span id="country">Belarus</span> </div>
@@ -51,7 +51,8 @@
         </div>
         <div class="position">
                 <form action="#" class="search">
-                    <input type="text" class="search__input" placeholder="Search city"><button class="search__btn">Search</button>
+                    <input id="searchInput" type="text" class="search__input" placeholder="Search city"><button id="audioSearchBtn" class="search__btn">Listen</button></input>
+                    <button id="searchBtn" class="search__btn">Search</button>
                 </form>
                 <div id="map" class="map"></div>
                 <div class="latitude"><span class="latitude__name">Latitude: </span><span id="latitude" class="latitude__value">53&deg;54&prime;</span></div>
