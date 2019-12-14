@@ -1,6 +1,5 @@
 import {convertKtoC, convertKtoF} from './func.js';
 export class Weather{
-
   constructor(){
     this.temp;
     this.condition;
@@ -8,7 +7,7 @@ export class Weather{
     this.humidity;
     this.sunrise;
     this.sunset;
-    this.main;
+    this.apparentTemp;
     this.timeZone;
   } 
 
@@ -21,22 +20,19 @@ export class Weather{
       
       let request = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&lang=${'en'}&APPID=529de013e9d3c2c6528f81831ab3aa2f`);
       let response = await request.json();
-      console.log(response);
       if (!localStorage.getItem('unit')) {
         localStorage.setItem('unit', 'C');
       }
       this.temp = ( localStorage.getItem('unit') === 'C') ?
        Math.round(convertKtoC(response.main.temp)): Math.round(convertKtoF(response.main.temp));
-       
-      
       this.condition = response.weather[0].description;
-      this.main = response.weather[0].main;
+      this.apparentTemp = ( localStorage.getItem('unit') === 'C') ?
+       Math.round(convertKtoC(response.main.feels_like)): Math.round(convertKtoF(response.main.feels_like));
       this.windValue = response.wind.speed;
       this.humidity = response.main.humidity;
       this.sunrise = response.sys.sunrise;
       this.sunset = response.sys.sunset;
       this.timeZone = response.timezone;
-      //console.log(this.timeZone);
       this.getIcon(response.weather[0].icon);
       
     }catch(err){
@@ -107,12 +103,13 @@ export class Weather{
     const pressure = document.getElementById('pressure');
     const wind = document.getElementById('wind');
     const humidity = document.getElementById('humidity');
+    const apparentTemp = document.getElementById('apparentTemp');
 
     degToday.innerText = this.temp;
     cast.innerText = this.condition;
     wind.innerText = this.windValue;
     humidity.innerText = this.humidity;
-    
+    apparentTemp.innerText = this.apparentTemp; 
   }
 
  

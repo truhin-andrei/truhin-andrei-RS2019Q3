@@ -44,7 +44,7 @@ export class Location{
 
   renderCountry(){
     const countryEl = document.getElementById('country');
-    countryEl.innerText = this.country;
+    countryEl.innerText =', ' + this.country;
   }
 
   getNameArea(){
