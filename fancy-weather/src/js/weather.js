@@ -9,6 +9,7 @@ export class Weather{
     this.sunset;
     this.apparentTemp;
     this.timeZone;
+    this.main;
   } 
 
   init(location){
@@ -17,7 +18,6 @@ export class Weather{
 
   async getWeather(city = this.location.city){
     try  {
-      
       let request = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&lang=${'en'}&APPID=529de013e9d3c2c6528f81831ab3aa2f`);
       let response = await request.json();
       if (!localStorage.getItem('unit')) {
@@ -33,6 +33,7 @@ export class Weather{
       this.sunrise = response.sys.sunrise;
       this.sunset = response.sys.sunset;
       this.timeZone = response.timezone;
+      this.main = response.weather[0].main;
       this.getIcon(response.weather[0].icon);
       
     }catch(err){

@@ -11,7 +11,7 @@ export class Wallpaper{
     //const request = search.value.split(' ').join(',');
     console.log(this.getDayOrNight(), this.weather.main, this.getSeason());
     const url = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=3ae54ce17ef1d06ba9a9aeb7a6e1579f&tags=
-    ${this.getDayOrNight(), this.weather.main}&tag_mode=all&sort=relevance&per_page=20&content_type=4&format=json&nojsoncallback=1`;
+    ${this.getDayOrNight(), this.weather.main, this.getSeason()}&tag_mode=all&sort=relevance&per_page=20&content_type=4&format=json&nojsoncallback=1`;
     try {
       let response = await fetch(url);
       let data = await response.json();
@@ -28,7 +28,6 @@ export class Wallpaper{
     let photo = this.photoArray[randomIndex];
      let img_url = "http://farm" + photo.farm + ".static.flickr.com/" + 
         photo.server + "/" + photo.id + "_" + photo.secret + "_" + "b.jpg";
-    console.log('hi');
     const container = document.querySelector('.container');
     container.style.backgroundImage = `url(${img_url}) ` ; 
   }

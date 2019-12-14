@@ -30,6 +30,7 @@ export default class UnitToggle{
   reRender(){
     this.reRenderMain();
     this.reRenderForecast();
+    this. reRenderApparentTemp();
   }
 
   reRenderMain(){
@@ -37,6 +38,13 @@ export default class UnitToggle{
     let newDeg = ( localStorage.getItem('unit') === 'F') ?
      convertFtoC(mainDeg.innerText): convertCtoF(mainDeg.innerText);
     mainDeg.innerText = Math.round(newDeg);
+  }
+
+  reRenderApparentTemp(){
+    const apparentTemp = document.getElementById('apparentTemp');
+    let newApparentTemp = ( localStorage.getItem('unit') === 'F') ?
+     convertFtoC(apparentTemp.innerText): convertCtoF(apparentTemp.innerText);
+     apparentTemp.innerText = Math.round(newApparentTemp);
   }
 
   reRenderForecast(){
