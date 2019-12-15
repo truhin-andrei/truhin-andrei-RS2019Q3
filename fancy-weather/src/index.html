@@ -12,53 +12,61 @@
 </head>
 <body>
     <div class="container">
+      <div class="control-panel">
+        <div class="btn">
+          <button id="reloadBtn" class="btn__reload">
+              <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M39 0H5C2.23858 0 0 2.23858 0 5V39C0 41.7614 2.23858 44 5 44H39C41.7614 44 44 41.7614 44 39V5C44 2.23858 41.7614 0 39 0Z" fill="#B4B8BB" fill-opacity="0.4"/>
+                  <path d="M27.2218 44L7.2218 24L0 31.2218V39C0 41.7614 2.23858 44 5 44H27.2218Z" fill="#AEB5B9" fill-opacity="0.5"/>
+                  <path d="M34.2218 14L44 23.7782V39C44 41.7614 41.7614 44 39 44H27.2218L15.7218 32.5L34.2218 14Z" fill="#AEB5B9" fill-opacity="0.3"/>
+                  <path d="M9 13C11.2091 13 13 11.2091 13 9C13 6.79086 11.2091 5 9 5C6.79086 5 5 6.79086 5 9C5 11.2091 6.79086 13 9 13Z" fill="white" fill-opacity="0.3"/>
+              </svg>
+          </button>
+          <select id="selectLang" class="btn__lang">
+              <option value=”En”>En</option>                   
+              <option value=”Ru”>Ru</option>                   
+              <option value=”Bl”>Bl</option>                   
+          </select>
+          <div  id="btnDeg" class="btn__deg-wrap">
+              <button id="btnC" class="btn__deg-c">C</button><button id="btnF" class="btn__deg-f">F</button>
+          </div>    
+        </div>
+        <form action="#" class="search">
+          <input id="searchInput" type="text" class="search__input" pattern="[A-Za-zА-Яа-яЁё]" placeholder="Search city"><button id="audioSearchBtn" class="search__btn">Listen</button></input>
+          <button id="searchBtn" class="search__btn">Search</button>
+        </form>
+      </div>
+      <div class="info">
         <div class="weather">
-            <div class="btn">
-                <button id="reloadBtn" class="btn__reload">
-                    <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M39 0H5C2.23858 0 0 2.23858 0 5V39C0 41.7614 2.23858 44 5 44H39C41.7614 44 44 41.7614 44 39V5C44 2.23858 41.7614 0 39 0Z" fill="#B4B8BB" fill-opacity="0.4"/>
-                        <path d="M27.2218 44L7.2218 24L0 31.2218V39C0 41.7614 2.23858 44 5 44H27.2218Z" fill="#AEB5B9" fill-opacity="0.5"/>
-                        <path d="M34.2218 14L44 23.7782V39C44 41.7614 41.7614 44 39 44H27.2218L15.7218 32.5L34.2218 14Z" fill="#AEB5B9" fill-opacity="0.3"/>
-                        <path d="M9 13C11.2091 13 13 11.2091 13 9C13 6.79086 11.2091 5 9 5C6.79086 5 5 6.79086 5 9C5 11.2091 6.79086 13 9 13Z" fill="white" fill-opacity="0.3"/>
-                    </svg>
-                </button>
-                <select id="selectLang" class="btn__lang">
-                    <option value=”En”>En</option>                   
-                    <option value=”Ru”>Ru</option>                   
-                    <option value=”Bl”>Bl</option>                   
-                </select>
-            <div  id="btnDeg" class="btn__deg-wrap">
-                <button id="btnC" class="btn__deg-c">C</button><button id="btnF" class="btn__deg-f">F</button>
-            </div>    
-            </div>
-            <div class="location"><span id="city"></span><span id="country"></span> </div>
-            <div id="date" class="date"><span id="day"></span> <span id="date"></span> <span id="month"></span> 
-                <span id="time"></span></div>
-            <div class="forecast">
-                <div class="forecast__deg"><span id="degToday"></span>&deg;</div>
-                <div class="forecast__desc">
-                    <div id="cast" class="forecast__cloud">overcast</div>
-                    <div class="pressure">Apparent temperature: <span id="apparentTemp"></span>&deg;</div>
-                    <div class="wind">Wind: <span id="wind"></span>m/s </div>
-                    <div class="humidity">Humidity: <span id="humidity"></span>%</div>
-                </div>
-            </div>
-            <div class="next-forecast">
-                <div class="next-forecast__day"><span class="nextDay"></span> <span id="nextForecast1" class="next-forecast__degr"></span></div>
-                <div class="next-forecast__day"><span class="nextDay"></span> <span id="nextForecast2" class="next-forecast__degr"></span></div>
-                <div class="next-forecast__day"><span class="nextDay"></span> <span id="nextForecast3" class="next-forecast__degr"></span></div>
-            </div>
-        </div>
-        <div class="position">
-                <form action="#" class="search">
-                    <input id="searchInput" type="text" class="search__input" pattern="[A-Za-zА-Яа-яЁё]" placeholder="Search city"><button id="audioSearchBtn" class="search__btn">Listen</button></input>
-                    <button id="searchBtn" class="search__btn">Search</button>
-                </form>
-                <div id="map" class="map"></div>
-                <div class="latitude"><span class="latitude__name">Latitude: </span><span id="latitude" class="latitude__value">53&deg;54&prime;</span></div>
-                <div class="longitude"><span class="longitude__name">Longitude: </span><span id="longitude" class="longitude__value">53&deg;54&prime;</span></div>
-                
-        </div>
+           
+          <div class="location"><span id="city"></span><span id="country"></span> </div>
+          <div id="date" class="date"><span id="day"></span> <span id="date"></span> <span id="month"></span> 
+              <span id="time"></span></div>
+          <div class="forecast">
+              <div class="forecast__deg"><span id="degToday"></span>&deg;</div>
+              <div class="forecast__desc">
+                  <div id="cast" class="forecast__cloud">overcast</div>
+                  <div class="pressure">Apparent temperature: <span id="apparentTemp"></span>&deg;</div>
+                  <div class="wind">Wind: <span id="wind"></span>m/s </div>
+                  <div class="humidity">Humidity: <span id="humidity"></span>%</div>
+              </div>
+          </div>
+          <div class="next-forecast">
+              <div class="next-forecast__day"><span class="nextDay"></span> <span id="nextForecast1" class="next-forecast__degr"></span></div>
+              <div class="next-forecast__day"><span class="nextDay"></span> <span id="nextForecast2" class="next-forecast__degr"></span></div>
+              <div class="next-forecast__day"><span class="nextDay"></span> <span id="nextForecast3" class="next-forecast__degr"></span></div>
+          </div>
+      </div>
+      <div class="position">
+              
+              <div id="map" class="map"></div>
+              <div class="latitude"><span class="latitude__name">Latitude: </span><span id="latitude" class="latitude__value">53&deg;54&prime;</span></div>
+              <div class="longitude"><span class="longitude__name">Longitude: </span><span id="longitude" class="longitude__value">53&deg;54&prime;</span></div>
+              
+      </div>
+      </div>
+
+        
     </div>
 </body>
 </html>
