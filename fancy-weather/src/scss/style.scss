@@ -35,15 +35,17 @@
     font-size: 14px;
     line-height: 17px;
     text-transform: uppercase;
-    color: #FFFFFF;
-    
+    color: #FFFFFF; 
 }
 
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    
+    box-sizing: border-box; 
+}
+
+body{
+  overflow-x: hidden;
 }
 
 .container{
@@ -51,9 +53,9 @@
    // flex-wrap: wrap;
     max-width: 1240px;
     
-    min-height: 800px;
+    min-height: 600px;
     margin: 0 auto;
-    padding: 40px 90px;
+    padding: 40px 20px;
     background-color: gray;
     background-size: cover;
     background-repeat: no-repeat;
@@ -65,12 +67,12 @@
 }
 
 .weather{
-   // margin-right: 270px;
+    margin-right: 10px;
 }
 
 .btn {
     display: flex;
-    margin-bottom: 57px;
+    margin-bottom: 2rem;
 
     &__reload {
         width: 44px;
@@ -126,44 +128,49 @@
 
 .info{
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  background-color: rgba(76, 82, 85, 0.3);
+  border-radius: 10px;
+  padding: 5px;
 }
 
 .location{
     @include font-main();  
-    font-size: 44px;
-    line-height: 54px;  
+    font-size: 2rem;
+    line-height: 2.1rem;   
     margin-bottom: 4px;
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 }
 .date{  
     @include font-main();
     font-weight: 600;
-    font-size: 24px;
-    line-height: 29px;
+    font-size: 1rem;
+    line-height: 1.1rem;
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 }
 
 .forecast{
     display: flex;
     align-content: flex-end;
-    padding-top: 50px;
-    margin-bottom: 70px;
+    padding-top: 0.7rem;
+    margin-bottom: 2rem;
     position: relative;
 
     &__deg{
         display: flex;
         align-content: flex-start;
-        margin-right: 70px;
+        margin-right: 3rem; 
         
         @include font-main();
         line-height: normal;
-        font-size: 100px;
+        font-size: 3rem; 
         text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
         
         span {  
-            font-size: 306px;
-            line-height: 260px;
+            font-size:  10rem;
+            line-height: 11rem;
             text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
             
         } 
@@ -174,80 +181,77 @@
         flex-direction: column;
         justify-content: flex-end;
         @include font-main();
-        font-size: 22px;
-        line-height: 37px;
+        font-size: 1rem; 
+        line-height: 1.2rem;
         text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
     }
 }
 
 .mainDegImg{
-    width: 162px;
-    height: auto;
-    position: absolute;
-    z-index: 2;
-    object-fit: fill;
-    left: 390px;
-    top: -40px;
-   
+  width: 8rem;
+  height: auto;
+  position: absolute;
+  z-index: 2;
+  object-fit: fill;
+  left: 12rem;
+  top: -1rem;
 }
 
 .forecastImg{
-    width: 110px;
+  width: 4rem;
     height: auto;
     position: absolute;
     z-index: 2;
     object-fit: fill;
-    left: 93px;
-    top: -8px;
+    left: 6rem;
+    top: 0rem;
 }
 
 .next-forecast{
     display: flex;
    
-
     @include font-main();
-    font-size: 22px;
-    line-height: 27px;
+    font-size: 1rem;
+    line-height: 1.1rem;
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 
     &__day{
         display: flex;
         flex-direction: column;
         position: relative;
-        margin-right: 50px;
+        margin-right: 2rem;
     }
 
     &__degr{
         display: inline-block;
-        font-size: 80px;
-        line-height: 98px;
-        padding-right: 70px;
+        font-size: 4rem;
+        line-height: 4.2rem;
+        padding-right: 3rem;
         text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
     }
 }
 
 .position{
-    max-width: 375px;
+    max-width: 100%;
     
     text-align: end;
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 600;
-    font-size: 20px;
-    line-height: 30px;
+    font-size: 1rem;
+    line-height: 1.1rem;
     text-transform: capitalize;
     color: #FFFFFF;
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 }
 
 .search{
-    margin-bottom: 160px;
+  display: flex;
 
     &__input{
-        width: 274px;
+        max-width: 274px;
         height: 44px;
         padding-left: 15px;
-
 
         @include font-main();
 
@@ -280,20 +284,68 @@
         border: 0;
         background: rgba(174, 181, 185, 0.5);
         border-radius: 0 5px 5px 0;
+
+        &--audio{
+         //position: relative;
+          width: 44px;
+          height: 44px;
+          margin-left:- 46px;
+          color: transparent;
+          background-color: transparent;
+          border-radius:0;
+          outline: 0;
+           border: 0;
+           background: url(../assets/img/microphone.svg) no-repeat;
+           background-position: center;
+           cursor: pointer;
+        }
     }
 }
 
 .map{
-    width: 375px;
+    width: 360px;
     height: 398px;
-    margin-bottom: 10px;
-    background-color: red;
-    border-radius:  20px;
+    margin-bottom: 10px; 
 }
 
 @media (max-width: 1240px){
-  .container{
-    
-    width: 100vw;
+  .container{  
+   width: 100vw;
 }
+}
+
+
+@media (max-width: 978px){
+
+.position{
+  width: 100vw;
+  margin-right: 20px;
+  margin-top: 20px; 
+}
+
+.map{
+  width: 100%;
+}
+}
+
+@media (max-width: 570px){
+
+  html {
+    font-size: 60%;
+  }
+
+  .container{
+  
+      padding: 40px 0px;
+  }
+
+  .control-panel{  
+   flex-wrap: wrap;
+   margin-bottom: 10px;
+}
+
+.info{
+  justify-content: flex-start;
+}
+
 }

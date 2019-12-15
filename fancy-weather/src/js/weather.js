@@ -93,7 +93,7 @@ export class Weather{
     
     for(let i=0; i < 3; i++){
       forecastEl[i].innerHTML = ( localStorage.getItem('unit') === 'C') ?
-      Math.round(convertKtoC(tempArr[(i+1)*8].main.temp)): Math.round(convertKtoF(tempArr[(i+1)*8].main.temp));
+      Math.round(convertKtoC(tempArr[(i+1)*8].main.temp))+'&deg;': Math.round(convertKtoF(tempArr[(i+1)*8].main.temp))+'&deg;';
       this.getIcon(tempArr[(i+1)*8].weather[0].icon, i+1);
     }
   }
