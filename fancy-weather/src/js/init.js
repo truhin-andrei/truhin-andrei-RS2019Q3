@@ -1,3 +1,4 @@
+import pageRender from './pageRender.js';
 import {Location} from './location.js';
 import {Map} from './map.js';
 import {DateNow} from './dateNow.js';
@@ -9,7 +10,7 @@ import AudioSearch from './audioSearch.js';
 import UnitToggle from './unitToggle.js';
 
 import {MINUTE_IN_MILISEC} from './const.js';
-
+pageRender();
 const searchBtn = document.getElementById('searchBtn');
 const wallpaperReloadBtn = document.getElementById('reloadBtn');
 const btnDeg = document.getElementById('btnDeg');
@@ -25,6 +26,7 @@ let unitToggle = new UnitToggle();
 let audioSearch = new AudioSearch();
 
 async function init(){
+
   unitToggle.madeToggleBtnActive()
   //location.getPosition();
   await location.getCity();
