@@ -14,6 +14,7 @@ const searchBtn = document.getElementById('searchBtn');
 const wallpaperReloadBtn = document.getElementById('reloadBtn');
 const btnDeg = document.getElementById('btnDeg');
 const audioSearchBtn = document.getElementById('audioSearchBtn');
+const screenSaver = document.getElementById('screenSaver');
 let location = new Location();
 let map = new Map();
 let dateNow = new DateNow();
@@ -48,7 +49,10 @@ async function init(){
   
  
 }
-init();
+init().then(() => {
+  screenSaver.style.display = 'none';
+});
+
 
 setInterval(() => {
   dateNow.render(weather.timeZone);
