@@ -1,13 +1,13 @@
 import pageRender from './pageRender.js';
-import {Location} from './location.js';
-import {Map} from './map.js';
-import {DateNow} from './dateNow.js';
-import {Weather} from './weather.js';
-import {Wallpaper} from './wallpaper.js';
-import {Search} from './search.js';
-import AudioSearch from './audioSearch.js';
+import Location from './location.js';
+import Map from './map.js';
+import DateNow from './dateNow.js';
+import Weather from './weather.js';
+import Wallpaper from './wallpaper.js';
+import Search from './search.js';
+import speechRecognitionInit from './speechRecognitionInit.js';
 import UnitToggle from './unitToggle.js';
-import {MINUTE_IN_MILISEC} from './const.js';
+import MINUTE_IN_MILISEC from './const.js';
 
 pageRender();
 
@@ -16,17 +16,17 @@ const wallpaperReloadBtn = document.getElementById('reloadBtn');
 const btnDeg = document.getElementById('btnDeg');
 const audioSearchBtn = document.getElementById('audioSearchBtn');
 const screenSaver = document.getElementById('screenSaver');
-let location = new Location();
-let map = new Map();
-let dateNow = new DateNow();
-let weather = new Weather();
-let wallpaper = new Wallpaper();
-let search = new Search();
-let unitToggle = new UnitToggle();
-let audioSearch = new AudioSearch();
+const location = new Location();
+const map = new Map();
+const dateNow = new DateNow();
+const weather = new Weather();
+const wallpaper = new Wallpaper();
+const search = new Search();
+const unitToggle = new UnitToggle();
+// const audioSearch = new AudioSearch();
 
-async function init(){
-  unitToggle.madeToggleBtnActive()
+async function init() {
+  unitToggle.madeToggleBtnActive();
   await location.getCity();
   map.init(location);
   await map.render();
@@ -47,14 +47,14 @@ init().then(() => {
 });
 
 setInterval(() => {
-  dateNow.render(weather.timeZone); 
+  dateNow.render(weather.timeZone);
 }, MINUTE_IN_MILISEC);
 
-searchBtn.addEventListener('click' || 'keydown', (event) => {
+searchBtn.addEventListener('click' || 'keydown', () => {
   search.searchApply();
 });
 
-wallpaperReloadBtn.addEventListener('click' || 'keydown', (event) => {
+wallpaperReloadBtn.addEventListener('click' || 'keydown', () => {
   wallpaper.render();
 });
 
@@ -73,8 +73,6 @@ btnDeg.addEventListener('click' || 'keydown', (event) => {
   }
 });
 
-audioSearchBtn.addEventListener('click' || 'keydown', (event) => {
-  audioSearch.speechRecognitionInit();
+audioSearchBtn.addEventListener('click' || 'keydown', () => {
+  speechRecognitionInit();
 });
-
-

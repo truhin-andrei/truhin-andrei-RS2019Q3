@@ -1,5 +1,5 @@
-export class Search{
-  init(location, weather, wallpaper, map, dateNow){
+export default class Search {
+  init(location, weather, wallpaper, map, dateNow) {
     this.location = location;
     this.weather = weather;
     this.wallpaper = wallpaper;
@@ -10,14 +10,14 @@ export class Search{
   async searchApply() {
     const searchInput = document.getElementById('searchInput');
     let searchCity = '';
-    if (!searchInput.value.match(/[\d \(\)\.\^\+]/g)){
+    if (!searchInput.value.match(/[\d \(\)\.\^\+]/g)) {
       searchCity = searchInput.value;
     }
-    if (searchCity === ''){
+    if (searchCity === '') {
       return;
     }
     searchInput.value = '';
-    
+
     this.location.getDataBySearch(searchCity);
     await this.weather.getWeather(searchCity);
     await this.wallpaper.getWallpaper();
@@ -28,7 +28,3 @@ export class Search{
     this.dateNow.render(this.weather.timeZone);
   }
 }
-
-
-
-

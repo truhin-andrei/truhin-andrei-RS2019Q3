@@ -1,37 +1,30 @@
-export class Map{
-  constructor(){
-    this.myMap;
-   
-    
+export default class Map {
+  constructor(myMap) {
+    this.myMap = myMap;
   }
+
   init(location) {
     this.location = location;
-}
-
- async render(){  
-    let  init =  () => {
-      let that = this;
-      //console.dir(this.location.latitude,1);
-        this.myMap = new ymaps.Map("map", {
-            center: [that.location.latitude, that.location.longitude],
-            zoom: 10
-            
-        });
-        //console.dir(this.location,2);
   }
-  try{
-    ymaps.ready(init);
+
+  async render() {
+    const init = () => {
+      const that = this;
+      this.myMap = new window.ymaps.Map('map', {
+        center: [that.location.latitude, that.location.longitude],
+        zoom: 10,
+
+      });
+    };
+    try {
+      ymaps.ready(init);
+    } catch (err) {
+      console.log('error Map');
+      console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
   }
-  catch(err){
-    console.log('error Map')
-    console.warn(`ERROR(${err.code}): ${err.message}`);
+
+  reRender() {
+    this.myMap.setCenter([this.location.longitude, this.location.latitude], 6);
   }
-  
-}
-
-reRender() {
-  this.myMap.setCenter([this.location.longitude, this.location.latitude], 6);
-}
-
-
 }

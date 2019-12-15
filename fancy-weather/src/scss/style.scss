@@ -1,6 +1,5 @@
 @import url("../reset.css");
 
-/* montserrat-600 - cyrillic_latin */
 @font-face {
     font-family: 'Montserrat';
     font-style: normal;
@@ -13,7 +12,7 @@
          url('../assets/fonts/montserrat-v14-cyrillic_latin-600.ttf') format('truetype'), /* Safari, Android, iOS */
          url('../assets/fonts/montserrat-v14-cyrillic_latin-600.svg#Montserrat') format('svg'); /* Legacy iOS */
   }
-  /* montserrat-800 - cyrillic_latin */
+
   @font-face {
     font-family: 'Montserrat';
     font-style: normal;
@@ -27,21 +26,20 @@
          url('../assets/fonts/montserrat-v14-cyrillic_latin-800.svg#Montserrat') format('svg'); /* Legacy iOS */
   }
 
-
 @mixin font-main() {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 17px;
-    text-transform: uppercase;
-    color: #FFFFFF; 
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+  text-transform: uppercase;
+  color: #FFFFFF; 
 }
 
 *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box; 
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; 
 }
 
 body{
@@ -49,14 +47,14 @@ body{
 }
 
 .container{
-    max-width: 1240px;
-    
-    min-height: 600px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    background-color: gray;
-    background-size: cover;
-    background-repeat: no-repeat;
+  max-width: 1240px;
+  
+  min-height: 600px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background-color: gray;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .control-panel{
@@ -65,7 +63,7 @@ body{
 }
 
 .weather{
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 .btn {
@@ -73,19 +71,19 @@ body{
     margin-bottom: 2rem;
 
     &__reload {
-        width: 44px;
-        height: 44px;
-        margin-right: 10px;
+      width: 44px;
+      height: 44px;
+      margin-right: 10px;
 
-        border-radius: 5px;
-        outline: 0;
+      border-radius: 5px;
+      outline: 0;
 
-        &:hover #reloader{
-          animation: rotation 2s infinite linear;
-        }
-        &:active{
-          background-color: rgb(174, 181, 185);
-        }
+      &:hover #reloader{
+        animation: rotation 2s infinite linear;
+      }
+      &:active{
+        background-color: rgb(174, 181, 185);
+      }
     }
 
     &__lang{
@@ -94,7 +92,6 @@ body{
         margin-right: 10px;
         
         @include font-main();  
-
         background: rgba(174, 181, 185, 0.5);
         border-radius: 5px; 
         outline: 0;
@@ -110,49 +107,46 @@ body{
     }
 
     &__deg-c{
-        width: 44px;
-        height: 44px;
+      width: 44px;
+      height: 44px;
 
-        @include font-main();  
+      @include font-main();  
 
-        background:  rgba(174, 181, 185, 0.5);
-        border-radius: 5px 0 0 5px;
-        
-        outline: 0;
+      background:  rgba(174, 181, 185, 0.5);
+      border-radius: 5px 0 0 5px;
+      outline: 0;
 
-        &:hover{
-          color: #000000;
-          background-color: rgb(174, 181, 185);
-        }
-        &:active{
-          color: #cccccc;
-          background-color: rgb(174, 181, 185);
-        }
+      &:hover{
+        color: #000000;
+        background-color: rgb(174, 181, 185);
+      }
+      &:active{
+        color: #cccccc;
+        background-color: rgb(174, 181, 185);
+      }
     }
 
     &__deg-f{
-        width: 44px;
-        height: 44px;
+      width: 44px;
+      height: 44px;
 
-        @include font-main();  
+      @include font-main();  
+      background:  rgba(174, 181, 185, 0.5);
+      border-radius: 0 5px 5px 0; 
+      outline: 0;
 
-        background:  rgba(174, 181, 185, 0.5);
-        border-radius: 0 5px 5px 0;
-        
-        outline: 0;
-
-        &:hover{
-          color: #000000;
-          background-color: rgb(174, 181, 185);
-        }
-        &:active{
-          color: #cccccc;
-          background-color: rgb(174, 181, 185);
-        }
+      &:hover{
+        color: #000000;
+        background-color: rgb(174, 181, 185);
+      }
+      &:active{
+        color: #cccccc;
+        background-color: rgb(174, 181, 185);
+      }
     }
 
     &__deg--active{ 
-        background: rgba(76, 82, 85, 0.4);
+      background: rgba(76, 82, 85, 0.4);
     }
 
 }
@@ -177,54 +171,53 @@ body{
 }
 
 .location{
-    @include font-main();  
-    font-size: 2rem;
-    line-height: 2.1rem;   
-    margin-bottom: 4px;
-    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  @include font-main();  
+  font-size: 2rem;
+  line-height: 2.1rem;   
+  margin-bottom: 4px;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 }
 .date{  
-    @include font-main();
-    font-weight: 600;
-    font-size: 1rem;
-    line-height: 1.1rem;
-    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  @include font-main();
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.1rem;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 }
 
 .forecast{
+  display: flex;
+  align-content: flex-end;
+  padding-top: 0.7rem;
+  margin-bottom: 2rem;
+  position: relative;
+
+  &__deg{
     display: flex;
-    align-content: flex-end;
-    padding-top: 0.7rem;
-    margin-bottom: 2rem;
-    position: relative;
+    align-content: flex-start;
+    margin-right: 3rem; 
+    
+    @include font-main();
+    line-height: normal;
+    font-size: 3rem; 
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    
+    span {  
+      font-size:  10rem;
+      line-height: 11rem;
+      text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;    
+    } 
+  }
 
-    &__deg{
-        display: flex;
-        align-content: flex-start;
-        margin-right: 3rem; 
-        
-        @include font-main();
-        line-height: normal;
-        font-size: 3rem; 
-        text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
-        
-        span {  
-            font-size:  10rem;
-            line-height: 11rem;
-            text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
-            
-        } 
-    }
-
-    &__desc{
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        @include font-main();
-        font-size: 1rem; 
-        line-height: 1.2rem;
-        text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
-    }
+  &__desc{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    @include font-main();
+    font-size: 1rem; 
+    line-height: 1.2rem;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  }
 }
 
 .mainDegImg{
@@ -240,121 +233,122 @@ body{
 
 .forecastImg{
   width: 4rem;
-    height: auto;
-    position: absolute;
-    z-index: 2;
-    object-fit: fill;
-    right: -1rem;
-    top: 0rem;
-    filter: contrast(2.5);
+  height: auto;
+  position: absolute;
+  z-index: 2;
+  object-fit: fill;
+  right: -1rem;
+  top: 0rem;
+  filter: contrast(2.5);
 }
 
 .next-forecast{
+  display: flex;
+  
+  @include font-main();
+  font-size: 1rem;
+  line-height: 1.1rem;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+
+  &__day{
     display: flex;
-   
-    @include font-main();
-    font-size: 1rem;
-    line-height: 1.1rem;
+    flex-direction: column;
+    position: relative;
+    margin-right: 2rem;
+  }
+
+  &__degr{
+    display: inline-block;
+    font-size: 4rem;
+    line-height: 4.2rem;
+    padding-right: 3rem;
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
-
-    &__day{
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        margin-right: 2rem;
-    }
-
-    &__degr{
-        display: inline-block;
-        font-size: 4rem;
-        line-height: 4.2rem;
-        padding-right: 3rem;
-        text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
-    }
+  }
 }
 
 .position{
-    max-width: 100%;
-    
-    text-align: end;
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 1rem;
-    line-height: 1.1rem;
-    text-transform: capitalize;
-    color: #FFFFFF;
-    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  max-width: 100%;
+  
+  text-align: end;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.1rem;
+  text-transform: capitalize;
+  color: #FFFFFF;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 }
 
 .search{
   display: flex;
 
-    &__input{
-        max-width: 274px;
-        height: 44px;
-        padding-left: 15px;
+  &__input{
+    max-width: 274px;
+    height: 44px;
+    padding-left: 15px;
 
-        @include font-main();
+    @include font-main();
 
-        outline: 0;
-        border: 0;
-        background: rgba(76, 82, 85, 0.4);
-        border: 1px solid rgba(228, 227, 227, 0.2);
-        border-radius:  5px 0 0 5px;  
+    outline: 0;
+    border: 0;
+    background: rgba(76, 82, 85, 0.4);
+    border: 1px solid rgba(228, 227, 227, 0.2);
+    border-radius:  5px 0 0 5px;  
+  }
+
+  ::-webkit-input-placeholder{
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    text-transform: capitalize;
+    color: #FFFFFF;
+  }
+
+  &__btn{
+    width: 101px;
+    height: 44px;
+
+    @include font-main();
+
+    outline: 0;
+    border: 0;
+    background: rgba(174, 181, 185, 0.5);
+    border-radius: 0 5px 5px 0;
+
+    &:hover{
+      color: #000000;
+      background-color: rgb(174, 181, 185);
+    }
+    &:active{
+      color: #cccccc;
+      background-color: rgb(174, 181, 185);
     }
 
-    ::-webkit-input-placeholder{
-        font-family: Montserrat;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 14px;
-        line-height: 17px;
-        text-transform: capitalize;
-        color: #FFFFFF;
+    &--audio{
+      width: 44px;
+      height: 44px;
+      margin-left:- 46px;
+      color: transparent;
+      background-color: transparent;
+      border-radius:0;
+      outline: 0;
+      border: 0;
+      background: url(../assets/img/microphone.svg) no-repeat;
+      background-position: center;
+      cursor: pointer;
+      background-blend-mode: color;
+
+      &:hover{
+      animation: beat 1s infinite linear;
+      background-blend-mode: color;
+      }
     }
-
-    &__btn{
-        width: 101px;
-        height: 44px;
-
-        @include font-main();
-
-        outline: 0;
-        border: 0;
-        background: rgba(174, 181, 185, 0.5);
-        border-radius: 0 5px 5px 0;
-
-        &:hover{
-          color: #000000;
-          background-color: rgb(174, 181, 185);
-        }
-        &:active{
-          color: #cccccc;
-          background-color: rgb(174, 181, 185);
-        }
-
-        &--audio{
-          width: 44px;
-          height: 44px;
-          margin-left:- 46px;
-          color: transparent;
-          background-color: transparent;
-          border-radius:0;
-          outline: 0;
-           border: 0;
-           background: url(../assets/img/microphone.svg) no-repeat;
-           background-position: center;
-           cursor: pointer;
-           background-blend-mode: color;
-
-           &:hover{
-            animation: beat 1s infinite linear;
-            background-blend-mode: color;
-           }
-        }
-    }
+  }
 }
+
 @keyframes beat{
   0%{
     transform: scale(1);
@@ -368,17 +362,19 @@ body{
 }
 
 .map{
-    width: 360px;
-    height: 398px;
-    margin-bottom: 10px; 
+  width: 360px;
+  height: 398px;
+  margin-bottom: 10px; 
 }
 
 .screen-saver{
   position: absolute;
-  width: 100vw;
-  height: 100vh;
+  // width: 100vw;
+  // height: 100vh;
+  width: 100%;
+  height: 100%;
   z-index: 5;
-  overflow: hidden;
+  overflow-y: hidden;
   top: 0;
   left: 0;
 
@@ -392,38 +388,34 @@ body{
 }
 }
 
-
 @media (max-width: 978px){
+  .position{
+    width: 100vw;
+    margin-right: 20px;
+    margin-top: 20px; 
+  }
 
-.position{
-  width: 100vw;
-  margin-right: 20px;
-  margin-top: 20px; 
-}
-
-.map{
-  width: 100%;
-}
+  .map{
+    width: 100%;
+  }
 }
 
 @media (max-width: 570px){
-
   html {
     font-size: 60%;
   }
 
   .container{
   
-      padding: 40px 0px;
+    padding: 40px 0px;
   }
 
   .control-panel{  
    flex-wrap: wrap;
    margin-bottom: 10px;
-}
+  }
 
-.info{
-  justify-content: flex-start;
-}
-
+  .info{
+    justify-content: flex-start;
+  }
 }

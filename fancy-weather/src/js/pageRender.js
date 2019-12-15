@@ -1,8 +1,7 @@
-export default function pageRender(){
+export default function pageRender() {
+  const page = document.querySelector('body');
 
-const page = document.querySelector('body');
-
-page.innerHTML=` <div class="container">
+  page.innerHTML = ` <div class="container">
 <div class="control-panel">
   <div class="btn">
     <button id="reloadBtn" class="btn__reload">              
@@ -76,5 +75,4 @@ page.innerHTML=` <div class="container">
   <div id="fountainG_8" class="fountainG"></div>
 </div>
 </div>`;
-
 }
