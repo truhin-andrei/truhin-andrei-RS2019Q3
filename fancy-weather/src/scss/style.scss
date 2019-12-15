@@ -49,8 +49,6 @@ body{
 }
 
 .container{
-    //display: flex;
-   // flex-wrap: wrap;
     max-width: 1240px;
     
     min-height: 600px;
@@ -81,6 +79,13 @@ body{
 
         border-radius: 5px;
         outline: 0;
+
+        &:hover #reloader{
+          animation: rotation 2s infinite linear;
+        }
+        &:active{
+          background-color: rgb(174, 181, 185);
+        }
     }
 
     &__lang{
@@ -94,6 +99,14 @@ body{
         border-radius: 5px; 
         outline: 0;
 
+        &:hover{
+          color: #000000;
+          background-color: rgb(174, 181, 185);
+        }
+        &:active{
+          color: #cccccc;
+          background-color: rgb(174, 181, 185);
+        }
     }
 
     &__deg-c{
@@ -106,6 +119,15 @@ body{
         border-radius: 5px 0 0 5px;
         
         outline: 0;
+
+        &:hover{
+          color: #000000;
+          background-color: rgb(174, 181, 185);
+        }
+        &:active{
+          color: #cccccc;
+          background-color: rgb(174, 181, 185);
+        }
     }
 
     &__deg-f{
@@ -118,12 +140,30 @@ body{
         border-radius: 0 5px 5px 0;
         
         outline: 0;
+
+        &:hover{
+          color: #000000;
+          background-color: rgb(174, 181, 185);
+        }
+        &:active{
+          color: #cccccc;
+          background-color: rgb(174, 181, 185);
+        }
     }
 
     &__deg--active{ 
         background: rgba(76, 82, 85, 0.4);
     }
 
+}
+
+@keyframes rotation{
+  from{
+   transform: rotate3d() (0deg);
+  }
+  to{
+    transform: rotate(360deg);
+  }
 }
 
 .info{
@@ -193,8 +233,9 @@ body{
   position: absolute;
   z-index: 2;
   object-fit: fill;
-  left: 12rem;
+  right: 12rem;
   top: -1rem;
+  filter: contrast(2.5);
 }
 
 .forecastImg{
@@ -203,8 +244,9 @@ body{
     position: absolute;
     z-index: 2;
     object-fit: fill;
-    left: 6rem;
+    right: -1rem;
     top: 0rem;
+    filter: contrast(2.5);
 }
 
 .next-forecast{
@@ -259,9 +301,7 @@ body{
         border: 0;
         background: rgba(76, 82, 85, 0.4);
         border: 1px solid rgba(228, 227, 227, 0.2);
-        border-radius:  5px 0 0 5px;
-
-       
+        border-radius:  5px 0 0 5px;  
     }
 
     ::-webkit-input-placeholder{
@@ -285,8 +325,16 @@ body{
         background: rgba(174, 181, 185, 0.5);
         border-radius: 0 5px 5px 0;
 
+        &:hover{
+          color: #000000;
+          background-color: rgb(174, 181, 185);
+        }
+        &:active{
+          color: #cccccc;
+          background-color: rgb(174, 181, 185);
+        }
+
         &--audio{
-         //position: relative;
           width: 44px;
           height: 44px;
           margin-left:- 46px;
@@ -298,8 +346,25 @@ body{
            background: url(../assets/img/microphone.svg) no-repeat;
            background-position: center;
            cursor: pointer;
+           background-blend-mode: color;
+
+           &:hover{
+            animation: beat 1s infinite linear;
+            background-blend-mode: color;
+           }
         }
     }
+}
+@keyframes beat{
+  0%{
+    transform: scale(1);
+  }
+  50%{
+    transform: scale(2);
+  }
+  100%{
+    transform: scale(1);
+  }
 }
 
 .map{
