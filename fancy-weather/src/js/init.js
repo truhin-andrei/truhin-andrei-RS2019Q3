@@ -57,7 +57,10 @@ setInterval(() => {
 }, MINUTE_IN_MILISEC);
 
 searchBtn.addEventListener('click' || 'keydown', () => {
-  search.searchApply();
+  screenSaver.style.display = 'display';
+  search.searchApply().then(() => {
+    screenSaver.style.display = 'none';
+  });
 });
 
 wallpaperReloadBtn.addEventListener('click' || 'keydown', () => {
