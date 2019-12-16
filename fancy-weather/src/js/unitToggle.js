@@ -1,18 +1,24 @@
-import { convertFtoC, convertCtoF } from './func.js';
+import { convertFtoC, convertCtoF } from './func';
 
 export default class UnitToggle {
   constructor() {
     this.unit = localStorage.getItem('unit');
     this.btnC = document.getElementById('btnC');
     this.btnF = document.getElementById('btnF');
+    this.mainDeg = document.getElementById('degToday');
+    this.apparentTemp = document.getElementById('apparentTemp');
+    this.forecastEl = document.getElementsByClassName('next-forecast__degr');
   }
 
   madeToggleBtnActive() {
     if (!localStorage.getItem('unit')) {
       this.btnC.classList.add('btn__deg--active');
     }
-    (localStorage.getItem('unit') === 'C')
-      ? this.btnC.classList.add('btn__deg--active') : this.btnF.classList.add('btn__deg--active');
+    if (localStorage.getItem('unit') === 'C') {
+      this.btnC.classList.add('btn__deg--active');
+    } else {
+      this.btnF.classList.add('btn__deg--active');
+    }
   }
 
   toggleToC() {
@@ -34,27 +40,26 @@ export default class UnitToggle {
   }
 
   reRenderMain() {
-    const mainDeg = document.getElementById('degToday');
     const newDeg = (localStorage.getItem('unit') === 'F')
-      ? convertFtoC(mainDeg.innerText) : convertCtoF(mainDeg.innerText);
-    mainDeg.innerText = Math.round(newDeg);
+      ? convertFtoC(this.mainDeg.innerText) : convertCtoF(this.mainDeg.innerText);
+    this.mainDeg.innerText = Math.round(newDeg);
   }
 
   reRenderApparentTemp() {
-    const apparentTemp = document.getElementById('apparentTemp');
     const newApparentTemp = (localStorage.getItem('unit') === 'F')
-      ? convertFtoC(apparentTemp.innerText) : convertCtoF(apparentTemp.innerText);
-    apparentTemp.innerText = Math.round(newApparentTemp);
+      ? convertFtoC(this.apparentTemp.innerText) : convertCtoF(this.apparentTemp.innerText);
+    this.apparentTemp.innerText = Math.round(newApparentTemp);
   }
 
   reRenderForecast() {
-    const forecastEl = document.getElementsByClassName('next-forecast__degr');
-
+    let newTemp;
     for (let i = 0; i < 3; i += 1) {
       if (localStorage.getItem('unit') === 'F') {
-        forecastEl[i].innerText = Math.round(convertFtoC(parseInt(forecastEl[i].innerText, 10)));
+        newTemp = convertFtoC(parseInt(this.forecastEl[i].innerText, 10));
+        this.forecastEl[i].innerText = Math.round(newTemp);
       } else {
-        forecastEl[i].innerText = Math.round(convertCtoF(parseInt(forecastEl[i].innerText, 10)));
+        newTemp = convertCtoF(parseInt(this.forecastEl[i].innerText, 10));
+        this.forecastEl[i].innerText = Math.round(newTemp);
       }
     }
   }

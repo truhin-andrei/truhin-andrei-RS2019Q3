@@ -13,11 +13,10 @@ export default class Map {
       this.myMap = new window.ymaps.Map('map', {
         center: [that.location.latitude, that.location.longitude],
         zoom: 10,
-
       });
     };
     try {
-      ymaps.ready(init);
+      window.ymaps.ready(init);
     } catch (err) {
       console.log('error Map');
       console.warn(`ERROR(${err.code}): ${err.message}`);
@@ -25,6 +24,6 @@ export default class Map {
   }
 
   reRender() {
-    this.myMap.setCenter([this.location.longitude, this.location.latitude], 6);
+    this.myMap.setCenter([this.location.latitude, this.location.longitude], 6);
   }
 }

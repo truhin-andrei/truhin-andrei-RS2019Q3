@@ -19,7 +19,7 @@ export default class DateNow {
     return formatter.format(this.now1);
   }
 
-  setLang(lang){
+  setLang(lang) {
     this.lang = lang;
   }
 

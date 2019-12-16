@@ -1,9 +1,9 @@
-import {getDict} from './language';
+import { getDict } from './language';
 
 export default function pageRender() {
   const page = document.querySelector('body');
-  let dict = getDict();
-  
+  const dict = getDict();
+
   page.innerHTML = ` <div class="container">
 <div class="control-panel">
   <div class="btn">

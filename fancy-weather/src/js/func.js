@@ -14,4 +14,10 @@ export function convertFtoC(f) {
   return (5 / 9) * (f - 32);
 }
 
+export function getDeg(coord) {
+  return Math.trunc(coord);
+}
 
+export function getMinutes(coord) {
+  return Math.trunc((coord - getDeg(coord)) * 60);
+}

@@ -1,6 +1,7 @@
 export default class Wallpaper {
   constructor(photoArray) {
     this.photoArray = photoArray;
+    this.now = new Date();
   }
 
   init(weather) {
@@ -30,8 +31,7 @@ export default class Wallpaper {
   }
 
   getNow() {
-    const now = new Date();
-    return now;
+    return this.now;
   }
 
   getDayOrNight() {

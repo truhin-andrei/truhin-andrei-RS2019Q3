@@ -10,7 +10,7 @@ export default class Search {
   async searchApply() {
     const searchInput = document.getElementById('searchInput');
     let searchCity = '';
-    if (!searchInput.value.match(/[\d \(\)\.\^\+]/g)) {
+    if (!searchInput.value.match(/\d/g)) {
       searchCity = searchInput.value;
     }
     if (searchCity === '') {

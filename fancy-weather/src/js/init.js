@@ -1,15 +1,15 @@
-import pageRender from './pageRender.js';
-import Location from './location.js';
-import Map from './map.js';
-import DateNow from './dateNow.js';
-import Weather from './weather.js';
-import Wallpaper from './wallpaper.js';
-import Search from './search.js';
-import speechRecognitionInit from './speechRecognitionInit.js';
-import UnitToggle from './unitToggle.js';
-import MINUTE_IN_MILISEC from './const.js';
+import pageRender from './pageRender';
+import Location from './location';
+import Map from './map';
+import DateNow from './dateNow';
+import Weather from './weather';
+import Wallpaper from './wallpaper';
+import Search from './search';
+import speechRecognitionInit from './speechRecognitionInit';
+import UnitToggle from './unitToggle';
+import MINUTE_IN_MILISEC from './const';
 
-import {renderPageWithNewLang, langToggleController} from './language';
+import { renderPageWithNewLang, langToggleController } from './language';
 
 pageRender();
 langToggleController();
@@ -90,14 +90,9 @@ selectLang.addEventListener('change', () => {
   weather.setLang(lang);
   weather.getWeather().then(() => {
     weather.render();
-  }); 
+  });
   location.setLang(lang);
   location.getNameArea();
   langToggleController();
   renderPageWithNewLang();
 });
-
-
-
-
-

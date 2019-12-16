@@ -1,7 +1,8 @@
-import { convertKtoC, convertKtoF } from './func.js';
+import { convertKtoC, convertKtoF } from './func';
 
 export default class Weather {
-  constructor(lang, temp, condition, windValue, humidity, sunrise, sunset, apparentTemp, timeZone, main) {
+  constructor(lang, temp, condition, windValue, humidity,
+    sunrise, sunset, apparentTemp, timeZone, main) {
     this.lang = lang;
     this.temp = temp;
     this.condition = condition;
@@ -12,13 +13,14 @@ export default class Weather {
     this.apparentTemp = apparentTemp;
     this.timeZone = timeZone;
     this.main = main;
+    this.img = document.createElement('img');
   }
 
   init(location) {
     this.location = location;
   }
 
-  setLang(lang){
+  setLang(lang) {
     this.lang = lang;
   }
 
@@ -76,20 +78,16 @@ export default class Weather {
 
   renderIcon(responseIcon) {
     const mainDeg = document.querySelector('.forecast');
-    const img = document.createElement('img');
-
-    img.classList.add('mainDegImg');
-    mainDeg.append(img);
-    img.src = URL.createObjectURL(responseIcon);
+    this.img.classList.add('mainDegImg');
+    mainDeg.append(this.img);
+    this.img.src = URL.createObjectURL(responseIcon);
   }
 
   renderForecastIcon(responseIcon, forecastNum) {
     const forecast = document.querySelectorAll('.next-forecast__day');
-    const img = document.createElement('img');
-
-    img.classList.add('forecastImg');
-    forecast[forecastNum].append(img);
-    img.src = URL.createObjectURL(responseIcon);
+    this.img.classList.add('forecastImg');
+    forecast[forecastNum].append(this.img);
+    this.img.src = URL.createObjectURL(responseIcon);
   }
 
   renderForecast(tempArr) {

@@ -1,3 +1,5 @@
+import { getDeg, getMinutes } from './func';
+
 export default class Location {
   constructor(lang, latitude, longitude, city) {
     this.lang = lang.toLowerCase();
@@ -6,7 +8,7 @@ export default class Location {
     this.city = city;
   }
 
-  setLang(lang){
+  setLang(lang) {
     this.lang = lang;
   }
 
@@ -15,6 +17,7 @@ export default class Location {
       const crd = pos.coords;
       this.latitude = crd.latitude;
       this.longitude = crd.longitude;
+      console.log(this.latitude);
       this.renderCoord();
       this.getNameArea();
     };
@@ -27,19 +30,11 @@ export default class Location {
     navigator.geolocation.getCurrentPosition(success, error);
   }
 
-  getDeg(coord) {
-    return Math.trunc(coord);
-  }
-
-  getMinutes(coord) {
-    return Math.trunc((coord - this.getDeg(coord)) * 60);
-  }
-
   renderCoord() {
     const latitude = document.getElementById('latitude');
     const longitude = document.getElementById('longitude');
-    latitude.innerHTML = `${this.getDeg(this.latitude)}&deg; ${this.getMinutes(this.latitude)}&prime;`;
-    longitude.innerHTML = `${this.getDeg(this.longitude)}&deg; ${this.getMinutes(this.longitude)}&prime;`;
+    latitude.innerHTML = `${getDeg(this.latitude)}&deg; ${getMinutes(this.latitude)}&prime;`;
+    longitude.innerHTML = `${getDeg(this.longitude)}&deg; ${getMinutes(this.longitude)}&prime;`;
   }
 
   renderCity() {
@@ -53,8 +48,7 @@ export default class Location {
   }
 
   getNameArea() {
-    console.log(this.lang);
-    fetch(`https://geocode-maps.yandex.ru/1.x/?apikey=b58ea381-e37e-43d1-95fc-ec3da56fccd0&format=json&geocode=${this.longitude},${this.latitude}&kind=locality&lang=${this.lang+"_RU"}&results=1`)
+    fetch(`https://geocode-maps.yandex.ru/1.x/?apikey=b58ea381-e37e-43d1-95fc-ec3da56fccd0&format=json&geocode=${this.longitude},${this.latitude}&kind=locality&lang=${`${this.lang}_RU`}&results=1`)
       .then((response) => response.json())
       .then((res) => {
         this.city = res.response.GeoObjectCollection.featureMember[0].GeoObject.name;
@@ -65,14 +59,14 @@ export default class Location {
   }
 
   async getDataBySearch(city) {
-    fetch(`https://geocode-maps.yandex.ru/1.x/?apikey=b58ea381-e37e-43d1-95fc-ec3da56fccd0&format=json&geocode=${city}&kind=locality&lang=${'en_RU'}&results=1`)
+    fetch(`https://geocode-maps.yandex.ru/1.x/?apikey=b58ea381-e37e-43d1-95fc-ec3da56fccd0&format=json&geocode=${city}&kind=locality&lang=${`${this.lang}_RU`}&results=1`)
       .then((response) => response.json())
       .then((res) => {
         this.city = res.response.GeoObjectCollection.featureMember[0].GeoObject.name;
         this.country = res.response.GeoObjectCollection.featureMember[0].GeoObject.description;
         const coord = res.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(' ');
 
-        [this.latitude, this.longitude] = coord;
+        [this.longitude, this.latitude] = coord;
         this.renderCity();
         this.renderCountry();
         this.renderCoord();
