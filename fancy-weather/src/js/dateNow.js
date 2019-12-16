@@ -1,5 +1,6 @@
 export default class DateNow {
-  constructor(now1) {
+  constructor(lang, now1) {
+    this.lang = lang;
     this.now1 = now1;
   }
 
@@ -7,7 +8,7 @@ export default class DateNow {
     const now = new Date();
     const UTCStamp = now.getTime() + now.getTimezoneOffset() * 60 * 1000;
     this.now1 = new Date(UTCStamp + timeZone * 1000);
-    const formatter = new Intl.DateTimeFormat('en', {
+    const formatter = new Intl.DateTimeFormat(this.lang, {
       weekday: 'short',
       year: 'numeric',
       month: 'long',
@@ -18,6 +19,10 @@ export default class DateNow {
     return formatter.format(this.now1);
   }
 
+  setLang(lang){
+    this.lang = lang;
+  }
+
   render(timeZone) {
     const dateEl = document.getElementById('date');
     dateEl.innerHTML = this.getDate(timeZone);
@@ -26,7 +31,7 @@ export default class DateNow {
 
   renderForecastDay() {
     const forecast = document.querySelectorAll('.nextDay');
-    const formatDay = new Intl.DateTimeFormat('en', {
+    const formatDay = new Intl.DateTimeFormat(this.lang, {
       weekday: 'long',
     });
 

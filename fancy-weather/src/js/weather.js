@@ -1,7 +1,8 @@
 import { convertKtoC, convertKtoF } from './func.js';
 
 export default class Weather {
-  constructor(temp, condition, windValue, humidity, sunrise, sunset, apparentTemp, timeZone, main) {
+  constructor(lang, temp, condition, windValue, humidity, sunrise, sunset, apparentTemp, timeZone, main) {
+    this.lang = lang;
     this.temp = temp;
     this.condition = condition;
     this.windValue = windValue;
@@ -17,9 +18,13 @@ export default class Weather {
     this.location = location;
   }
 
+  setLang(lang){
+    this.lang = lang;
+  }
+
   async getWeather(city = this.location.city) {
     try {
-      const request = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&lang=${'en'}&APPID=529de013e9d3c2c6528f81831ab3aa2f`);
+      const request = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&lang=${this.lang}&APPID=529de013e9d3c2c6528f81831ab3aa2f`);
       const response = await request.json();
       if (!localStorage.getItem('unit')) {
         localStorage.setItem('unit', 'C');

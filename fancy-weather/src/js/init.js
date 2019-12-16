@@ -9,21 +9,27 @@ import speechRecognitionInit from './speechRecognitionInit.js';
 import UnitToggle from './unitToggle.js';
 import MINUTE_IN_MILISEC from './const.js';
 
+import {renderPageWithNewLang, langToggleController} from './language';
+
 pageRender();
+langToggleController();
+
+let lang = localStorage.getItem('lang') || 'en';
 
 const searchBtn = document.getElementById('searchBtn');
 const wallpaperReloadBtn = document.getElementById('reloadBtn');
 const btnDeg = document.getElementById('btnDeg');
 const audioSearchBtn = document.getElementById('audioSearchBtn');
 const screenSaver = document.getElementById('screenSaver');
-const location = new Location();
+const selectLang = document.getElementById('selectLang');
+const location = new Location(lang);
 const map = new Map();
-const dateNow = new DateNow();
-const weather = new Weather();
+const dateNow = new DateNow(lang);
+const weather = new Weather(lang);
 const wallpaper = new Wallpaper();
 const search = new Search();
 const unitToggle = new UnitToggle();
-// const audioSearch = new AudioSearch();
+
 
 async function init() {
   unitToggle.madeToggleBtnActive();
@@ -74,5 +80,24 @@ btnDeg.addEventListener('click' || 'keydown', (event) => {
 });
 
 audioSearchBtn.addEventListener('click' || 'keydown', () => {
-  speechRecognitionInit();
+  speechRecognitionInit(lang);
 });
+
+selectLang.addEventListener('change', () => {
+  lang = selectLang.options[selectLang.selectedIndex].innerText;
+  localStorage.setItem('lang', lang);
+  dateNow.setLang(lang);
+  weather.setLang(lang);
+  weather.getWeather().then(() => {
+    weather.render();
+  }); 
+  location.setLang(lang);
+  location.getNameArea();
+  langToggleController();
+  renderPageWithNewLang();
+});
+
+
+
+
+

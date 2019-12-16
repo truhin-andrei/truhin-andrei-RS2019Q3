@@ -1,8 +1,13 @@
 export default class Location {
-  constructor(latitude, longitude, city) {
+  constructor(lang, latitude, longitude, city) {
+    this.lang = lang.toLowerCase();
     this.latitude = latitude;
     this.longitude = longitude;
     this.city = city;
+  }
+
+  setLang(lang){
+    this.lang = lang;
   }
 
   getPosition() {
@@ -48,7 +53,8 @@ export default class Location {
   }
 
   getNameArea() {
-    fetch(`https://geocode-maps.yandex.ru/1.x/?apikey=b58ea381-e37e-43d1-95fc-ec3da56fccd0&format=json&geocode=${this.longitude},${this.latitude}&kind=locality&lang=${'en_RU'}&results=1`)
+    console.log(this.lang);
+    fetch(`https://geocode-maps.yandex.ru/1.x/?apikey=b58ea381-e37e-43d1-95fc-ec3da56fccd0&format=json&geocode=${this.longitude},${this.latitude}&kind=locality&lang=${this.lang+"_RU"}&results=1`)
       .then((response) => response.json())
       .then((res) => {
         this.city = res.response.GeoObjectCollection.featureMember[0].GeoObject.name;

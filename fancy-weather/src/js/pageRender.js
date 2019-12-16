@@ -1,6 +1,9 @@
+import {getDict} from './language';
+
 export default function pageRender() {
   const page = document.querySelector('body');
-
+  let dict = getDict();
+  
   page.innerHTML = ` <div class="container">
 <div class="control-panel">
   <div class="btn">
@@ -18,17 +21,16 @@ export default function pageRender() {
     </button>
     <select id="selectLang" class="btn__lang">
         <option value=”En”>En</option>                   
-        <option value=”Ru”>Ru</option>                   
-        <option value=”Bl”>Bl</option>                   
+        <option value=”Ru”>Ru</option>                                      
     </select>
     <div  id="btnDeg" class="btn__deg-wrap">
         <button id="btnC" class="btn__deg-c">C</button><button id="btnF" class="btn__deg-f">F</button>
     </div>    
   </div>
   <form action="#" class="search">
-    <input id="searchInput" type="text" class="search__input" pattern="[A-Za-zА-Яа-яЁё]" placeholder="Search city">
+    <input id="searchInput" type="text" class="search__input" pattern="[A-Za-zА-Яа-яЁё]" placeholder="${dict[5]}">
     <button id="audioSearchBtn" class="search__btn--audio">v</button>
-    <button id="searchBtn" class="search__btn">Search</button>
+    <button id="searchBtn" class="search__btn">${dict[6]}</button>
   </form>
 </div>
 <div class="info">
@@ -41,9 +43,9 @@ export default function pageRender() {
         <div class="forecast__deg"><span id="degToday"></span>&deg;</div>
         <div class="forecast__desc">
             <div id="cast" class="forecast__cloud">overcast</div>
-            <div class="pressure">Feels like: <span id="apparentTemp"></span>&deg;</div>
-            <div class="wind">Wind: <span id="wind"></span>m/s </div>
-            <div class="humidity">Humidity: <span id="humidity"></span>%</div>
+            <div class="pressure">${dict[0]}: <span id="apparentTemp"></span>&deg;</div>
+            <div class="wind">${dict[1]}: <span id="wind"></span>m/s </div>
+            <div class="humidity">${dict[2]}: <span id="humidity"></span>%</div>
         </div>
     </div>
     <div class="next-forecast">
@@ -52,12 +54,10 @@ export default function pageRender() {
         <div class="next-forecast__day"><span class="nextDay"></span> <span id="nextForecast3" class="next-forecast__degr"></span></div>
     </div>
 </div>
-<div class="position">
-        
+<div class="position">       
         <div id="map" class="map"></div>
-        <div class="latitude"><span class="latitude__name">Latitude: </span><span id="latitude" class="latitude__value">53&deg;54&prime;</span></div>
-        <div class="longitude"><span class="longitude__name">Longitude: </span><span id="longitude" class="longitude__value">53&deg;54&prime;</span></div>
-        
+        <div class="latitude"><span class="latitude__name">${dict[3]}: </span><span id="latitude" class="latitude__value">53&deg;54&prime;</span></div>
+        <div class="longitude"><span class="longitude__name">${dict[4]}: </span><span id="longitude" class="longitude__value">53&deg;54&prime;</span></div>    
 </div>
 </div>
 

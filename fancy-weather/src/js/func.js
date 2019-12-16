@@ -13,3 +13,5 @@ export function convertKtoF(k) {
 export function convertFtoC(f) {
   return (5 / 9) * (f - 32);
 }
+
+
