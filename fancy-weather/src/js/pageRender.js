@@ -28,8 +28,8 @@ export default function pageRender() {
     </div>    
   </div>
   <form action="#" class="search">
-    <input id="searchInput" type="text" class="search__input" pattern="[A-Za-zА-Яа-яЁё]" placeholder="${dict[5]}">
-    <button id="audioSearchBtn" class="search__btn--audio">v</button>
+    <input id="searchInput" type="text" class="search__input" placeholder="${dict[5]}">
+    <div id="audioSearchBtn" class="search__btn--audio">v</div>
     <button id="searchBtn" class="search__btn">${dict[6]}</button>
   </form>
 </div>
