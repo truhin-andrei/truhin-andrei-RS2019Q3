@@ -24,7 +24,7 @@ export default class Wallpaper {
   render() {
     const randomIndex = Math.floor(Math.random() * 19);
     const photo = this.photoArray[randomIndex];
-    const imgUrl = `http://farm${photo.farm}.static.flickr.com/${
+    const imgUrl = `https://farm${photo.farm}.static.flickr.com/${
       photo.server}/${photo.id}_${photo.secret}_b.jpg`;
     const container = document.querySelector('.container');
     container.style.backgroundImage = `url(${imgUrl}) `;

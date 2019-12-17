@@ -13,7 +13,8 @@ export default class Weather {
     this.apparentTemp = apparentTemp;
     this.timeZone = timeZone;
     this.main = main;
-    this.img = document.createElement('img');
+    this.mainDeg = document.querySelector('.forecast');
+    this.forecast = document.querySelectorAll('.next-forecast__day');
   }
 
   init(location) {
@@ -26,7 +27,7 @@ export default class Weather {
 
   async getWeather(city = this.location.city) {
     try {
-      const request = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&lang=${this.lang}&APPID=529de013e9d3c2c6528f81831ab3aa2f`);
+      const request = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&lang=${this.lang}&APPID=529de013e9d3c2c6528f81831ab3aa2f`);
       const response = await request.json();
       if (!localStorage.getItem('unit')) {
         localStorage.setItem('unit', 'C');
@@ -51,7 +52,7 @@ export default class Weather {
 
   async getForecast() {
     try {
-      const request = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${this.location.city}&cnt=26&lang=${'en'}&APPID=529de013e9d3c2c6528f81831ab3aa2f`);
+      const request = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${this.location.city}&cnt=26&lang=${'en'}&APPID=529de013e9d3c2c6528f81831ab3aa2f`);
       const response = await request.json();
 
       this.renderForecast(response.list);
@@ -63,7 +64,7 @@ export default class Weather {
 
   async getIcon(iconId, forecastNum = false) {
     try {
-      const request = await fetch(`http://openweathermap.org/img/wn/${iconId}@2x.png`);
+      const request = await fetch(`https://openweathermap.org/img/wn/${iconId}@2x.png`);
       const responseIcon = await request.blob();
       if (forecastNum) {
         this.renderForecastIcon(responseIcon, forecastNum - 1);
@@ -77,17 +78,17 @@ export default class Weather {
   }
 
   renderIcon(responseIcon) {
-    const mainDeg = document.querySelector('.forecast');
-    this.img.classList.add('mainDegImg');
-    mainDeg.append(this.img);
-    this.img.src = URL.createObjectURL(responseIcon);
+    const img = document.createElement('IMG');
+    img.classList.add('mainDegImg');
+    this.mainDeg.append(img);
+    img.src = URL.createObjectURL(responseIcon);
   }
 
   renderForecastIcon(responseIcon, forecastNum) {
-    const forecast = document.querySelectorAll('.next-forecast__day');
-    this.img.classList.add('forecastImg');
-    forecast[forecastNum].append(this.img);
-    this.img.src = URL.createObjectURL(responseIcon);
+    const img = document.createElement('IMG');
+    img.classList.add('forecastImg');
+    this.forecast[forecastNum].append(img);
+    img.src = URL.createObjectURL(responseIcon);
   }
 
   renderForecast(tempArr) {
