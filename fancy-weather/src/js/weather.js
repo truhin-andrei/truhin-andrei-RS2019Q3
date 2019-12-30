@@ -27,7 +27,7 @@ export default class Weather {
 
   async getWeather(city = this.location.city) {
     try {
-      const request = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&lang=${this.lang}&APPID=529de013e9d3c2c6528f81831ab3aa2f`);
+      const request = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${this.location.latitude}&lon=${this.location.longitude}&lang=${this.lang}&APPID=529de013e9d3c2c6528f81831ab3aa2f`);
       const response = await request.json();
       if (!localStorage.getItem('unit')) {
         localStorage.setItem('unit', 'C');
@@ -52,7 +52,7 @@ export default class Weather {
 
   async getForecast() {
     try {
-      const request = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${this.location.city}&cnt=26&lang=${'en'}&APPID=529de013e9d3c2c6528f81831ab3aa2f`);
+      const request = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${this.location.latitude}&lon=${this.location.longitude}&cnt=26&lang=${'en'}&APPID=529de013e9d3c2c6528f81831ab3aa2f`);
       const response = await request.json();
 
       this.renderForecast(response.list);
