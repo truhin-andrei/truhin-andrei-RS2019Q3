@@ -1,17 +1,32 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin'); 
-const path = require('path');// update from 23.12.2018
-//const nodeExternals = require('webpack-node-externals');
+const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CssnanoPlugin = require('cssnano-webpack-plugin');
+const fs = require('fs')
+
+function generateHtmlPlugins(templateDir) {
+  const templateFiles = fs.readdirSync(path.resolve(__dirname, templateDir));
+  return templateFiles.map(item => {
+    const parts = item.split('.');
+    const name = parts[0];
+    const extension = parts[1];
+    return new HtmlWebpackPlugin({
+      filename: `${name}.html`,
+      template: path.resolve(__dirname, `${templateDir}/${name}.${extension}`),
+      inject: false,
+    })
+  })
+}
+
+const htmlPlugins = generateHtmlPlugins('./src/html');
 module.exports = {
   entry: { main: './src/index.js' },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
   },
-  target: 'node', // update from 23.12.2018
-  //externals: [nodeExternals()], // update from 23.12.2018
+  target: 'node', 
   module: {
     rules: [
       {
@@ -31,6 +46,18 @@ module.exports = {
           'postcss-loader',
           "sass-loader"
         ]
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'assets/fonts/'
+            }
+          }
+        ]
       }
     ]
   },
@@ -49,12 +76,6 @@ module.exports = {
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: 'style.css',
-    }),
-    new HtmlWebpackPlugin({
-      inject: false,
-      hash: true,
-      template: './src/index.html',
-      filename: 'index.html'
     })
-  ]
+  ].concat(htmlPlugins)
 };
