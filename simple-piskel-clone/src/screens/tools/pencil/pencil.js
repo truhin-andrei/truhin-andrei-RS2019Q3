@@ -3,13 +3,14 @@ import {canvas, context} from '../../canvas/canvas';
 function draw(event) {
   let x = event.layerX;
   let y = event.layerY;
-  const pixelX = localStorage.getItem('pixel.x');
-  const pixelY = localStorage.getItem('pixel.y');
-  console.log(pixelX, pixelY, localStorage.getItem('color'));
-  x = Math.ceil(x / pixelX) * pixelX - pixelX;
-  y = Math.ceil(y / pixelY) * pixelY - pixelY;
+  const canvasSize = localStorage.getItem('canvasSize');
+  const realCanvasSize = 512;
+  const canvasRatio = realCanvasSize/canvasSize;
+// todo set canvasSize 
+  x = Math.ceil(x / canvasRatio) * canvasRatio - canvasRatio;
+  y = Math.ceil(y / canvasRatio) * canvasRatio - canvasRatio;
   context.fillStyle = localStorage.getItem('color');
-  context.fillRect(x, y, pixelX, pixelY);
+  context.fillRect(x, y, canvasRatio, canvasRatio);
 }
 
 export function pencilDown() {

@@ -4,9 +4,11 @@ import {pencilUp, pencilDown} from './pencil/pencil';
 import {swapColor, colorSwitch} from './../colorPanel/colorPanel';
 
 
+
 const panelTools = document.getElementById('tools');
 
 function tools(event) {
+
   if (localStorage.getItem('tool')) {
     document.getElementById(localStorage.getItem('tool')).classList.remove('panel-tools--active');
     if (localStorage.getItem('tool') === 'bucket') {
@@ -17,11 +19,12 @@ function tools(event) {
     } else if (localStorage.getItem('tool') === 'pencil') {
       canvas.removeEventListener('mousedown', pencilDown);
       canvas.removeEventListener('mouseup', pencilUp);
-      //canvas.removeEventListener('mousemove', draw);
+  
     }
   }
   localStorage.setItem('tool', event.target.id);
   event.target.classList.add('panel-tools--active');
+
 
   if (localStorage.getItem('tool') === 'bucket') {
     canvas.addEventListener('click', bucket);
