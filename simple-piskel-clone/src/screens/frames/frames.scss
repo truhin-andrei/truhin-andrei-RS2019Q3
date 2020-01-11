@@ -1,0 +1,27 @@
+.frames {
+  width: 138px;
+  text-align: center;
+  border: 1px solid black;
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px 1px 15px 1px;
+  }
+
+  &__frame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 128px;
+    height: 128px;
+    border: 1px solid black;
+
+  }
+
+  &__btn {
+    width: 100px;
+    height: 50px;
+  }
+}
