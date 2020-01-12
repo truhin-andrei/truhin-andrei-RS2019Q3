@@ -4,7 +4,10 @@ import './screens/canvas/canvas.scss';
 import './screens/tools/tools.scss';
 import './screens/frames/frames.scss';
 import './screens/preview/preview.scss';
+import './screens/downloadImg/downloadImg.scss';
 import './screens/canvasSize/canvasSize.scss';
+
+
 
 import './components/init/init.js';
 import './screens/canvas/canvas.js';
@@ -14,6 +17,7 @@ import './screens/frames/frames.js';
 import './screens/preview/fps.js';
 import './screens/preview/preview.js';
 import './screens/frames/frames.js';
+import './screens/downloadImg/downloadImg.js';
 import './screens/canvasSize/canvasSize';
 
 
