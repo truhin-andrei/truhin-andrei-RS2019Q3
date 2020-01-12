@@ -7,8 +7,6 @@ function saveImage() {
   data = canvas.toDataURL();
   localStorage.setItem('image', data);
 }
-// load canvas after reload the page
-
 
 canvas.addEventListener('mouseleave', saveImage);
 
