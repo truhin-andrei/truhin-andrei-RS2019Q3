@@ -1,5 +1,6 @@
+import {startRecording } from './export/export';
 import {getFPS} from './fps';
-const previewScreen = document.getElementById('previewScreen');
+export const previewScreen = document.getElementById('previewScreen');
 const contextPreview = previewScreen.getContext('2d');
 const previewBtn = document.getElementById('previewBtn');
 let numFrame = 0;
@@ -13,9 +14,7 @@ function draw(frame){
   if (numFrame === 0) {
     clearCanvas(previewScreen);
   }
-
   contextPreview.drawImage(frame.firstChild,0,0, frame.firstChild.width, frame.firstChild.height);
-  console.dir(frame.firstChild.width, frame.firstChild.height);
   numFrame += 1;
 }
 
@@ -26,10 +25,12 @@ function getFrames(){
 let  fpsInterval, startTime, now, then, elapsed;
 
 function startAnimating() {
-   
-    then = Date.now();
-    startTime = then;
-    animate();
+if(getFrames().length){
+  then = Date.now();
+  startTime = then;
+  animate();
+}
+    
 }
 
 function animate() {
