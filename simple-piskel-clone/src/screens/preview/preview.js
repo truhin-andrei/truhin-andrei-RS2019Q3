@@ -5,6 +5,7 @@ const contextPreview = previewScreen.getContext('2d');
 const previewBtn = document.getElementById('previewBtn');
 let numFrame = 0;
 let fps = getFPS();
+let requestID;
 
 function clearCanvas(canvas){
   canvas.getContext('2d').clearRect(0,0, canvas.width, canvas.height);
@@ -25,7 +26,14 @@ function getFrames(){
 let  fpsInterval, startTime, now, then, elapsed;
 
 function startAnimating() {
+  if (requestID){
+    cancelAnimationFrame(requestID);
+    previewBtn.innerText = 'Start';
+    requestID = null;
+    return;
+  }
 if(getFrames().length){
+  previewBtn.innerText = 'Stop';
   then = Date.now();
   startTime = then;
   animate();
@@ -36,7 +44,7 @@ if(getFrames().length){
 function animate() {
   fps = getFPS();
   fpsInterval = 1000 / fps;
-  requestAnimationFrame(animate);
+  requestID = requestAnimationFrame(animate);
   now = Date.now();
   elapsed = now - then;
 
