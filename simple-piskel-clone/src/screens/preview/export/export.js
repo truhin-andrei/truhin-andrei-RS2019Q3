@@ -22,11 +22,12 @@ function exportVid(blob) {
   const vid = document.createElement('video');
   vid.src = URL.createObjectURL(blob);
   vid.controls = true;
+  vid.setAttribute('display', 'block');
   videoContainer.appendChild(vid);
   const a = document.createElement('a');
-  a.download = 'myvid.gif';
+  a.download = 'anim.gif';
   a.href = vid.src;
-  a.textContent = 'download the video';
+  a.textContent = 'download gif';
   videoContainer.appendChild(a);
 }
 
