@@ -1,4 +1,4 @@
-import {canvas, context} from '../canvas/canvas';
+import {canvas} from '../canvas/canvas';
 const framesList = document.getElementById('framesList');
 const addFrameBtn = document.getElementById('addFrameBtn');
 
