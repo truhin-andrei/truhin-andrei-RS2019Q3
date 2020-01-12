@@ -8,13 +8,9 @@ function saveImage() {
   localStorage.setItem('image', data);
 }
 // load canvas after reload the page
-function restoreImage() {
-  const img = new Image();
-  img.src = localStorage.getItem('image');
-  img.onload = function () {
-    context.drawImage(img, 0, 0);
-  };
-}
+
+
+canvas.addEventListener('mouseleave', saveImage);
 
 
 

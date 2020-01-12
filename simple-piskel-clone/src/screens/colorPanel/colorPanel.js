@@ -1,7 +1,7 @@
 const panelColor = document.getElementById('panelColor');
 const colorSelector = document.getElementById('choseColor');
 const sample = document.getElementById('sample');
-let color;
+let color = localStorage.getItem('color') || 'green';
 
 export function swapColor(event, newColor = sample.style.background) {
   document.body.style.setProperty('--prevColor', localStorage.getItem('color'));

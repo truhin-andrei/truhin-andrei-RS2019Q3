@@ -1,5 +1,5 @@
 import {tools} from '../../screens/tools/tools'
-
+import {context} from '../../screens/canvas/canvas';
 const eventClick = new MouseEvent('click', {
   view: window,
   bubbles: true,
@@ -11,6 +11,14 @@ function madeToolActive(tool) {
  const activeTool = document.getElementById(tool);
   activeTool.dispatchEvent(eventClick);
   localStorage.setItem('tool', tool);
+}
+
+function restoreImage() {
+  const img = new Image();
+  img.src = localStorage.getItem('image');
+  img.onload = function () {
+    context.drawImage(img, 0, 0);
+  };
 }
 
 // предустановка сохранёных значений после перезагрузки
@@ -30,9 +38,9 @@ if (localStorage.getItem('color')) {
 // const panelTools = document.getElementById('tools');
 // panelTools.addEventListener('eventClick', tools);
 
-// if (localStorage.getItem('image')) {
-//   restoreImage();
-// }
+if (localStorage.getItem('image')) {
+  restoreImage();
+}
 
 // if (localStorage.getItem('imgType')) {
 //   activeTool = document.getElementById(localStorage.getItem('imgType'));
