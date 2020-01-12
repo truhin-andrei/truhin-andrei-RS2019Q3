@@ -1,7 +1,7 @@
 
-import {context} from '../../canvas/canvas';
+import { context } from '../../canvas/canvas';
 
-export function bucket() {
+export default function bucket() {
   context.fillStyle = localStorage.getItem('color');
   context.fillRect(0, 0, 512, 512);
 }

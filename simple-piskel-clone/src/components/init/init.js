@@ -1,14 +1,13 @@
-import {tools} from '../../screens/tools/tools'
-import {context} from '../../screens/canvas/canvas';
+import { context } from '../../screens/canvas/canvas';
+
 const eventClick = new MouseEvent('click', {
   view: window,
   bubbles: true,
   cancelable: true,
 });
 
-
 function madeToolActive(tool) {
- const activeTool = document.getElementById(tool);
+  const activeTool = document.getElementById(tool);
   activeTool.dispatchEvent(eventClick);
   localStorage.setItem('tool', tool);
 }

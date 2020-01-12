@@ -1,24 +1,10 @@
-import {previewScreen} from '../preview';
+const previewScreen = document.getElementById('previewScreen');
+
 const exportBtn = document.getElementById('exportBtn');
 const videoContainer = document.getElementById('video');
-let recording = false; 
+let recording = false;
 
-export function startRecording() {
-  recording = true;
-  const chunks = [];
-  const stream = previewScreen.captureStream();
- const rec = new MediaRecorder(stream); 
-  rec.ondataavailable = e => chunks.push(e.data);
-  rec.onstop = e => {
-    exportVid(new Blob(chunks, {type: 'image/gif'})); 
-    recording = false;
-  }
-  rec.start();
-  setTimeout(()=>{
-    rec.stop();  console.dir(stream); console.dir(rec);}, 3000);
-}
-
-function exportVid(blob) {
+function exportAnim(blob) {
   const vid = document.createElement('video');
   vid.src = URL.createObjectURL(blob);
   vid.controls = true;
@@ -31,9 +17,24 @@ function exportVid(blob) {
   videoContainer.appendChild(a);
 }
 
-exportBtn.addEventListener('click', () => {
-  if (!recording){
-    startRecording() ;
-  }
+export default function startRecording() {
+  recording = true;
+  const chunks = [];
+  const stream = previewScreen.captureStream();
+  const rec = new MediaRecorder(stream);
+  rec.ondataavailable = (e) => chunks.push(e.data);
+  rec.onstop = () => {
+    exportAnim(new Blob(chunks, { type: 'image/gif' }));
+    recording = false;
+  };
+  rec.start();
+  setTimeout(() => {
+    rec.stop();
+  }, 3000);
+}
 
-})
+exportBtn.addEventListener('click', () => {
+  if (!recording) {
+    startRecording();
+  }
+});

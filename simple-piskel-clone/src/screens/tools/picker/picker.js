@@ -1,8 +1,8 @@
-import {context} from '../../canvas/canvas';
+import { context } from '../../canvas/canvas';
 
+const sample = document.getElementById('sample');
 
-
-export function picker(event) {
+export default function picker(event) {
   const sampleData = context.getImageData(event.layerX, event.layerY, 1, 1);
   const sampleColorData = sampleData.data;
   const sampleColor = `rgba(${sampleColorData[0]},${sampleColorData[1]},${

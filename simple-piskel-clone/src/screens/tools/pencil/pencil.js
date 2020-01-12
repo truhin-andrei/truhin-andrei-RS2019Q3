@@ -1,8 +1,8 @@
-import {canvas, context} from '../../canvas/canvas';
+import { canvas, context } from '../../canvas/canvas';
 
 const pencilSize = document.getElementById('pencilSize');
 
-function getPencilSize(){
+function getPencilSize() {
   return pencilSize.value;
 }
 
@@ -11,7 +11,7 @@ function draw(event) {
   let y = event.layerY;
   const canvasSize = localStorage.getItem('canvasSize');
   const realCanvasSize = 512;
-  const canvasRatio = realCanvasSize/canvasSize;
+  const canvasRatio = realCanvasSize / canvasSize;
   x = Math.ceil(x / canvasRatio) * canvasRatio - canvasRatio;
   y = Math.ceil(y / canvasRatio) * canvasRatio - canvasRatio;
   context.fillStyle = localStorage.getItem('color');

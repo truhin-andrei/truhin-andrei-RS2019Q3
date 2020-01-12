@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
+    <script defer src='bundle.js'></script>
+    <link rel="shortcut icon" href="#">
+    <title>Simple piskel clone</title>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <div class="main-menu">
+          <span class="main-menu__line"></span>
+          <span class="main-menu__line"></span>
+          <span class="main-menu__line"></span>
+        </div>
+        <h1 class="main-head">Simple piskel clone</h1>
+        <div class="add-menu">
+          <span class="add-menu__dot"></span>
+          <span class="add-menu__dot"></span>
+          <span class="add-menu__dot"></span>
+        </div>
+      </header>
+      <main class="pallete">
+<section class="panels">
+  <ul id="tools" class="panel-tools">
+    <li id="bucket" class="panel-tools__item">Paint bucket</li>
+    <li id="picker" class="panel-tools__item">Choose color</li>
+    <li id="pencil" class="panel-tools__item">Pencil
+      <select name="pencilSize" id="pencilSize" class="pencilSize">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+    </li>
+    <li id="eraser" class="panel-tools__item">Eraser
+      <select name="eraserSize" id="eraserSize" class="pencilSize">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+    </li>
+  </ul>
+  <ul id="panelColor" class="panel-color">
+    <li id="currentColor" class="panel-color__item"><label for="choseColor">
+        <input id="choseColor" type="color" value="#c4c4c4">Current color
+      </label></li>
+    <li id="prevColor" class="panel-color__item">Prev color</li>
+    <li id="red" class="panel-color__item">red</li>
+    <li id="blue" class="panel-color__item">blue</li>
+    <li id="sample" class="panel-color__item"></li>
+  </ul>
+</section>
+<section class="frames">
+  <div id="framesList" class="frames__list">
+    
+  </div>
+  <button id="addFrameBtn" class="frames__btn">Add</button>
+</section>
+<section id="preview" class="preview">
+  <canvas width="128" height="128" id="previewScreen" class="preview__screen">
+
+  </canvas>
+  <input type="range" id="previewFps" class="preview__fps" name="fps"
+  min="1" max="24" value="1" step="1" valueAsNumber list="marks">
+
+<label id="fpsLabel" for="fps">1fps</label>
+  <button id="previewBtn" class="preview__btn">Start</button>
+
+  <button id="exportBtn" class="preview__btn">Export</button>
+  <div id="video" class="video"></div>
+</section>
+
+<section class="canvas">
+  <canvas id="canvas" width="512" height="512"></canvas>
+</section>
+<section>
+  
+<select name="canvasSize" id="canvasSize" class="canvasSize">
+  <option value="128">128x128</option>
+  <option value="64">64x64</option>
+  <option value="32">32x32</option>
+</select>
+  
+<div id="downloadBtn" class="example-1">
+  <div class="form-group">
+    <label class="label">
+      <span class="title">Download</span>
+      <input type="file">
+    </label>
+  </div>
+</div>
+</section>
+
+
+
+
+</main>
+</div>
+</body>
+</html>
