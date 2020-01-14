@@ -1,16 +1,5 @@
 import { context } from '../../screens/canvas/canvas';
-
-const eventClick = new MouseEvent('click', {
-  view: window,
-  bubbles: true,
-  cancelable: true,
-});
-
-function madeToolActive(tool) {
-  const activeTool = document.getElementById(tool);
-  activeTool.dispatchEvent(eventClick);
-  localStorage.setItem('tool', tool);
-}
+import { madeToolActive } from '../../screens/tools/tools';
 
 function restoreImage() {
   const img = new Image();
