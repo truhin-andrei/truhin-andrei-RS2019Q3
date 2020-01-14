@@ -13,6 +13,7 @@ module.exports = {
       "sourceType": "module"
   },
   "rules": {
-      "func-names": ["error", "never"]
+      "func-names": ["error", "never"],
+      "linebreak-style": [2, "windows"]
       }
 };

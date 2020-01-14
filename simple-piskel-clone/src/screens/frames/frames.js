@@ -9,15 +9,26 @@ function addFrame() {
 
   img.setAttribute('width', localStorage.getItem('canvasSize'));
   img.setAttribute('height', localStorage.getItem('canvasSize'));
-  const btn = document.createElement('button');
-  btn.innerText = 'X';
-  btn.classList.add('deleteBtn');
+  
   const div = document.createElement('div');
   div.classList.add('frames__frame');
   div.append(img);
-  div.append(btn);
-
+  div.append(createBtn('deleteBtn'));
+  div.append(createBtn('copyBtn'));
   framesList.insertAdjacentElement('beforeend', div);
+}
+
+function createBtn(className){
+  const btn = document.createElement('button');
+  btn.innerText = (className === 'deleteBtn')? 'X' : 'V';
+  btn.classList.add(className);
+  return btn;
+}
+
+function copyFrame(event) {
+  if (event.target.classList.contains('copyBtn')) {
+    event.target.parentNode.after(event.target.parentNode.cloneNode(true));
+  }
 }
 
 function removeFrame(event) {
@@ -28,3 +39,4 @@ function removeFrame(event) {
 
 addFrameBtn.addEventListener('click', addFrame);
 framesList.addEventListener('click', removeFrame);
+framesList.addEventListener('click', copyFrame);
