@@ -2,7 +2,7 @@ import { canvas, context } from '../canvas/canvas';
 
 const downloadBtn = document.getElementById('downloadBtn');
 
-function getScale(w, h) {
+export function getScale(w, h, canvas) {
   return (w > h) ? ((w / canvas.width)) : ((h / canvas.height));
 }
 

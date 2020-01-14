@@ -19,4 +19,5 @@ January 12 | January 12 | 1h | download image
 January 12 | January 12 | 1h | save image after reload
 January 12 | January 12 | 1h | remove frame
 January 14 | January 14 | 1h | copy frame
+January 14 | January 14 | 1h | keyboard control
 
